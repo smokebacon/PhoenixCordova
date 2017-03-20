@@ -160,8 +160,10 @@
     <div data-role="header">
         <h1>Register</h1>
     </div>
+
     <div data-role="content">
         <form action="" method="post">
+
             <div class="ui-grid-solo">
                 <div data-role="fieldcontain">
                     <label for="txfEmail">Email (or username)</label>
@@ -214,16 +216,14 @@
 
             </div>
 
-
+        </form>
     </div>
-</div>
-</div>
 </div>
 
 <div data-role="page" id="bookingList" data-add-back-btn="true">
     <div data-role="header">
         <h1>Booking List</h1>
-        <a href="#homepage" data-theme="b" id="btnLogout2">Log out</a>
+        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
     </div>
     <div data-role="content">
         <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
@@ -236,7 +236,7 @@
                 <h3 id="lblBookingNo1" align="center">Trip Booking No</h3>
                 <h4 id="bookingNo1" align="center">AJD12341</h4>
                 <div>
-                    <a href="" data-role="button" id="bookingStatus1">Pending</a>
+                    <a href="" data-role="button" data-theme="b" id="bookingStatus1">Pending</a>
                 </div>
 
             </li>
@@ -250,7 +250,7 @@
                 <h3 id="lblBookingNo2" align="center">Trip Booking No</h3>
                 <h4 id="bookingNo2" align="center">AJD12341</h4>
                 <div>
-                    <a href="" data-role="button" id="bookingStatus2">Pending</a>
+                    <a href="" data-role="button" data-theme="b" id="bookingStatus2">Pending</a>
                 </div>
 
             </li>
@@ -264,7 +264,7 @@
                 <h3 id="lblBookingNo3" align="center">Trip Booking No</h3>
                 <h4 id="bookingNo3" align="center">AJD12341</h4>
                 <div>
-                    <a href="" data-role="button" id="bookingStatus3">Pending</a>
+                    <a href="" data-role="button" data-theme="b" id="bookingStatus3">Pending</a>
                 </div>
 
             </li>
@@ -285,19 +285,168 @@
 
 <div data-role="page" id="tourList" data-add-back-btn="true">
     <div data-role="header">
-        <h1>PAGE 3</h1>
+        <h1>All Tour List</h1>
+        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
     </div>
     <div data-role="content">
-        CONTENT 3
+        <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
+        <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="allTourHead1">TOUR 1</h1>
+            </li>
+            <li>
+                <div>
+                    <a href="" data-role="button" data-theme="c" id="tourView1">View Itinerary</a>
+                    <a href="" data-role="button" data-theme="a" id="tourBook1">Book Trip</a>
+                </div>
+
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="allTourHead2">TOUR 2</h1>
+            </li>
+            <li>
+                <div>
+                    <a href="" data-role="button" data-theme="c" id="tourView2">View Itinerary</a>
+                    <a href="" data-role="button" data-theme="a" id="tourBook2">Book Trip</a>
+                </div>
+
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="allTourHead3">TOUR 3</h1>
+            </li>
+            <li>
+                <div>
+                    <a href="" data-role="button" data-theme="c" id="tourView3">View Itinerary</a>
+                    <a href="" data-role="button" data-theme="a" id="tourBook3">Book Trip</a>
+                </div>
+
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="allTourHead4">TOUR 4</h1>
+            </li>
+            <li>
+                <div>
+                    <a href="" data-role="button" data-theme="c" id="tourView4">View Itinerary</a>
+                    <a href="" data-role="button" data-theme="a" id="tourBook4">Book Trip</a>
+                </div>
+
+            </li>
+        </ul>
+
+        <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="allTourHead5">TOUR 5</h1>
+            </li>
+            <li>
+                <div>
+                    <a href="" data-role="button" data-theme="c" id="tourView5">View Itinerary</a>
+                    <a href="" data-role="button" data-theme="a" id="tourBook5">Book Trip</a>
+                </div>
+
+            </li>
+        </ul>
+
+    </div>
+
+    <div data-role="footer" data-id="foo1" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#yourTrip">Your Trip</a></li>
+                <li><a href="#bookingList">Bookings</a></li>
+                <li><a href="#tourList" data-theme="b">All Tours</a></li>
+                <li><a href="#account">Account</a></li>
+            </ul>
+        </div><!-- /navbar -->
     </div>
 </div>
 
 <div data-role="page" id="account" data-add-back-btn="true">
     <div data-role="header">
-        <h1>PAGE 3</h1>
+        <h1>Account Edit</h1>
+        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
     </div>
+
     <div data-role="content">
-        CONTENT 3
+        <form action="" method="post">
+
+            <div class="ui-grid-solo">
+                <div data-role="fieldcontain">
+                    <label for="EtxfEmail">Email (or username)</label>
+                    <input type="text" name="EtxfEmail" id="EtxfEmail"/>
+                    <p>Will be used as a username</p>
+                    <br/>
+
+                    <label for="EtxfPassword">Password</label>
+                    <input type="Password" name="EtxfPassword" id="EtxfPassword"/>
+                    <p>8-16 characters, no symbols</p>
+                    <br/>
+
+                    <label for="EtxfName">Full Name</label>
+                    <input type="text" name="EtxfName" id="EtxfName" data-mini="true"/>
+                    <br/>
+
+                    <label for="EtxfName">Middle Initial</label>
+                    <input type="text" name="EtxfMiddle" id="EtxfMiddle" data-mini="true"/>
+                    <br/>
+
+                    <label for="EtxfLast">Last Name</label>
+                    <input type="text" name="Etxflast" id="EtxfLast" data-mini="true"/>
+                </div>
+                <br/>
+
+                <div data-role="fieldcontain">
+                    <h3>Address</h3>
+                    <label for="EtxfStreetNo">Street No</label>
+                    <input type="text" name="EtxfStreetNo" id="EtxfStreetNo" data-mini="true"/>
+
+                    <label for="EtxfStreetName">Street Name</label>
+                    <input type="text" name="EtxfStreetName" id="EtxfStreetName" data-mini="true"/>
+
+                    <label for="txfSuburb">Suburb</label>
+                    <input type="text" name="EtxfSuburb" id="EtxfSuburb" data-mini="true"/>
+
+                    <label for="EtxfPost">Post Code</label>
+                    <input type="text" name="EtxfPost" id="EtxfPost" data-mini="true"/>
+
+                    <label for="EtxfPhone">Phone</label>
+                    <input type="text" name="EtxfPhone" id="EtxfPhone" data-mini="true"/>
+
+                </div>
+
+                <div data-role="fieldcontain">
+                    <a href="#homepage" data-role="button" data-theme="a"
+                       id="EbtnSubmit">APPLY CHANGES</a>
+                    <a href="#homepage" data-role="button" data-theme="a" id="EbtnCancel">DELETE
+                        ACCOUNT</a>
+                </div>
+
+            </div>
+        </form>
+    </div>
+
+    <div data-role="footer" data-id="foo1" data-position="fixed">
+        <div data-role="navbar">
+            <ul>
+                <li><a href="#yourTrip">Your Trip</a></li>
+                <li><a href="#bookingList">Bookings</a></li>
+                <li><a href="#tourList" >All Tours</a></li>
+                <li><a href="#account" data-theme="b">Account</a></li>
+            </ul>
+        </div><!-- /navbar -->
     </div>
 </div>
 
