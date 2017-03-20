@@ -15,6 +15,7 @@ var pageinited = false;
 $(document).on("pageinit", function(){
 
 
+
         // Billk added code
         if(pageinited){return;} else{pageinited= true;}
         // end added code
