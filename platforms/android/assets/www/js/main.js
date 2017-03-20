@@ -13,6 +13,8 @@ var pageinited = false;
 
 /////////////////////////////////////////jquery On Document Ready
 $(document).on("pageinit", function(){
+
+
         // Billk added code
         if(pageinited){return;} else{pageinited= true;}
         // end added code
@@ -21,7 +23,11 @@ $(document).on("pageinit", function(){
         $("#homepage").live("pagebeforeshow", function(){
 //             alert("Before show homepage");
         }); // end homepage live beforepageshow
-          
+
+          $("#homepage").live("pageaftershow", function(){
+
+          });
+
 		$("#homepage").live("pagebeforehide", function(){
 //             alert("Before hide homepage");
         }); // end homepage live pagebeforehide

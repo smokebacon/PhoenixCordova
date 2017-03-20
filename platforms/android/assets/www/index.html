@@ -18,71 +18,156 @@
     under the License.
 -->
 <html>
-    <head>
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <link href="jquery-mobile/jquery.mobile-1.1.0.min.css" rel="stylesheet" type="text/css"/>
-        <script src="jquery-mobile/jquery-1.7.2.min.js" type="text/javascript"></script>
-        <script src="jquery-mobile/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
-        <title>Hello World</title>
-    </head>
-    <body>
-    <div data-role="page" id="homepage">
-        <div data-role="header">
-            <h1 id='idh'>HOME</h1>
+<head>
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link href="jquery-mobile/jquery.mobile-1.1.0.min.css" rel="stylesheet" type="text/css"/>
+    <script src="jquery-mobile/jquery-1.7.2.min.js" type="text/javascript"></script>
+    <script src="jquery-mobile/jquery.mobile-1.1.0.min.js" type="text/javascript"></script>
+    <title>Hello World</title>
+</head>
+<body>
+<div data-role="page" id="homepage">
+
+    <!--<div data-role="header">-->
+    <!--<h1 id='idh'>HOME</h1>-->
+    <!--</div>-->
+
+    <div data-role="content">
+        <div class="ui-grid-solo">
+            <div align="center"><img src="img/phoenix.png" style="width:70%;"/></div>
         </div>
-        <div data-role="content">
-            <ul data-role="listview">
-                <li><a href="#page1">Page 1</a></li>
-                <li><a href="#page2">Page 2</a></li>
-                <li><a href="#page3">Page 3</a></li>
+        <div class="ui-grid-solo">
+            <h1>Phoenix Travel</h1><br/>
+        </div>
+
+        <form action="" method="post">
+            <div class="ui-grid-solo">
+                <div data-role="fieldcontain">
+                    <label for="txfUser">Username</label>
+                    <input type="text" name="name" id="txfUser"/>
+                    <br/>
+                    <label for="txfPass">Password</label>
+                    <input type="password" name="name" id="txfPass"/>
+                </div>
+            </div>
+
+            <div data-role="fieldcontain">
+                <a href="#yourTrip" data-role="button" data-theme="a" id="btnSignIn">SIGN IN</a>
+                <a href="#register" data-role="button" data-theme="a" id="btnRegister">REGISTER</a>
+
+            </div>
+
+        </form>
+
+
+    </div>
+
+</div>
+
+<div data-role="page" id="yourTrip">
+
+
+    <div data-role="header">
+        <a href="" data-icon="grid" id="btnOpenSidebarMenu">Menu</a>
+        <h1>Your Trip</h1>
+        <a href="" data-theme="b" id="btnLogout">Log out</a>
+    </div>
+    <div data-role="content">
+        <div class="ui-grid-solo">
+
+
+            <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
+            <ul data-role="listview" data-inset="true" class="card">
+
+                <li data-role="list-divider">
+                    <h1 id="tourHead1">TOUR NAME</h1>
+                </li>
+                <li>
+                    <div style="padding-right:4px;">
+                        <a href="" data-role="button" onclick="viewItinerary1">View Itinerary</a>
+                    </div>
+
+                    <div style="padding-right:4px;" align="center">
+                        <h4 id="tripDate1">Date</h4>
+                    </div>
+
+                </li>
             </ul>
-        </div>
-        <div data-role="footer">
-            <h4>Navigation</h4>
+            <ul data-role="listview" data-inset="true" class="card">
+
+                <li data-role="list-divider">
+                    <h1 id="tourHead1">TOUR NAME</h1>
+                </li>
+                <li>
+                    <div style="padding-right:4px;">
+                        <a href="" data-role="button" onclick="viewItinerary1">View Itinerary</a>
+                    </div>
+
+                    <div style="padding-right:4px;" align="center">
+                        <h4 id="tripDate1">Date</h4>
+                    </div>
+
+                </li>
+            </ul>
+            <ul data-role="listview" data-inset="true" class="card">
+
+                <li data-role="list-divider">
+                    <h1 id="tourHead1">TOUR NAME</h1>
+                </li>
+                <li>
+                    <div style="padding-right:4px;">
+                        <a href="" data-role="button" onclick="viewItinerary1">View Itinerary</a>
+                    </div>
+
+                    <div style="padding-right:4px;" align="center">
+                        <h4 id="tripDate1">Date</h4>
+                    </div>
+
+                </li>
+            </ul>
+
+
+            <!--END TODO-->
+
         </div>
     </div>
 
-    <div data-role="page" id="page1" data-add-back-btn="true">
-        <div data-role="header">
-            <h1>PAGE 1</h1>
-        </div>
-        <div data-role="content">
-            CONTENT 1
-        </div>
-    </div>
+</div>
 
-    <div data-role="page" id="page2" data-add-back-btn="true">
-        <div data-role="header">
-            <h1>PAGE 2</h1>
-        </div>
-        <div data-role="content">
-            CONTENT 2
-        </div>
+<div data-role="page" id="page2" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>PAGE 2</h1>
     </div>
+    <div data-role="content">
+        CONTENT 2
+    </div>
+</div>
 
-    <div data-role="page" id="page3" data-add-back-btn="true">
-        <div data-role="header">
-            <h1>PAGE 3</h1>
-        </div>
-        <div data-role="content">
-            CONTENT 3
-        </div>
+<div data-role="page" id="page3" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>PAGE 3</h1>
     </div>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="js/index.js"></script>
-        <script src="js/main.js"></script><!--Main js Scripts-->
-    </body>
+    <div data-role="content">
+        CONTENT 3
+    </div>
+</div>
+<script type="text/javascript" src="cordova.js"></script>
+<script type="text/javascript" src="js/index.js"></script>
+<script src="js/main.js"></script><!--Main js Scripts-->
+</body>
 </html>
