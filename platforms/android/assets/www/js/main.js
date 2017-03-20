@@ -19,28 +19,28 @@ $(document).on("pageinit", function(){
         
         // Homepage Event Handlers
         $("#homepage").live("pagebeforeshow", function(){
-             alert("Before show homepage");     
+//             alert("Before show homepage");
         }); // end homepage live beforepageshow
           
 		$("#homepage").live("pagebeforehide", function(){
-             alert("Before hide homepage");
+//             alert("Before hide homepage");
         }); // end homepage live pagebeforehide
         // END Homepage Event Handlers             
         
 
         // Page 1 Event Handlers
         $("#page1").live("pagebeforeshow", function(event){
-              alert("before page1 show");
-			  console.log('before page1 show'); // Displayed in Studio console
+//              alert("before page1 show");
+//			  console.log('before page1 show');
         });
                  
         $("#page1").live("pageshow", function(){
-             alert("page1 show");
-			 console.log('page1 show'); // Displayed in Studio console
+//             alert("page1 show");
+//			 console.log('page1 show');
         }); // end  live pageshow
             
      	$("#page1").live("pagebeforehide", function(){
-             alert("Before hide page1");
+//             alert("Before hide page1");
         }); // end page1 live pagebeforehide
 		// End Page 1 Events Handlers		
                                      
