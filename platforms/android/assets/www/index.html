@@ -156,7 +156,7 @@
 
 </div><!--End yourTrip-->
 
-<div data-role="page" id="register" data-add-back-btn="true">
+<div data-role="page" id="register" data-add-back-btn="false">
     <div data-role="header">
         <h1>Register</h1>
     </div>
@@ -166,6 +166,11 @@
 
             <div class="ui-grid-solo">
                 <div data-role="fieldcontain">
+                    <label for="txfCustomerID">Customer Id</label>
+                    <input type="text" name="txfCustomerID" id="txfCustomerID"/>
+                    <p>Your membership number.</p>
+                    <br/>
+
                     <label for="txfEmail">Email (or username)</label>
                     <input type="text" name="txfEmail" id="txfEmail"/>
                     <p>Will be used as a username</p>
@@ -180,7 +185,7 @@
                     <input type="text" name="txfName" id="txfName" data-mini="true"/>
                     <br/>
 
-                    <label for="txfName">Middle Initial</label>
+                    <label for="txfMiddle">Middle Initial</label>
                     <input type="text" name="txfMiddle" id="txfMiddle" data-mini="true"/>
                     <br/>
 
@@ -209,7 +214,7 @@
                 </div>
 
                 <div data-role="fieldcontain">
-                    <a href="#homepage" data-role="button" data-theme="a"
+                    <a data-role="button" data-theme="a"
                        id="btnSubmit">REGISTER</a>
                     <a href="#homepage" data-role="button" data-theme="a" id="btnCancel">CANCEL</a>
                 </div>
