@@ -16,17 +16,23 @@ $(document).on("pageinit", function(){
 
         var rootURL="http://10.0.2.2/sites/PhoenixSlim/"
 
-        var CustomerID;
-        var Email;
-        var Password;
-        var Name;
-        var Middle;
-        var Last;
-        var StreetNo;
-        var StreetName;
-        var Suburb;
-        var Postcode;
-        var Phone;
+//        var CustomerID;
+//        var Email;
+//        var Password;
+//        var Name;
+//        var Middle;
+//        var Last;
+//        var StreetNo;
+//        var StreetName;
+//        var Suburb;
+//        var Postcode;
+//        var Phone;
+
+        var storage = window.localStorage;
+        var value = localStorage.getItem('Auth');
+        var ID = localStorage.getItem('ID');
+        var Email = localStorage.getItem('Email');
+
 
 
         // Billk added code
@@ -36,93 +42,144 @@ $(document).on("pageinit", function(){
         // Homepage Event Handlers
         $("#homepage").live("pagebeforeshow", function(){
 
-        var auth;
-        var storage = window.localStorage;
-        var value = storage.getItem(auth);
-        if(auth == null)
+        if(localStorage.getItem('Auth') == null)
         {
-            alert("null auth");
-            jQuery.mobile.changePage("#register");
+            alert("No users found, please register");
+            jQuery.mobile.changePage('#register',{transition:"none"});
+        }else{
+            jQuery.mobile.changePage('#homepage',{transition:"none"});
+            $('#txfLoginCustID').val(localStorage.getItem('ID'));
+            $('#txfLoginEmail').val(localStorage.getItem('Email'));
         }
 
-             alert("Before show homepage");
         }); // end homepage live beforepageshow
 
-          $("#homepage").live("pageaftershow", function(){
+        $("#btnSignIn").on("click",function(){
+//                  alert('On signin button');
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + 'customer/getAuth',
+                dataType: 'JSON',
+                data: loginJSON(),
+            })
+            .done(function(data){
+//              alert('completed, now comparing localstorage...');
+                value = storage.getItem('Auth');
+//              alert(value);
+//              alert(data.Auth);
+                if(value != data.Auth){
+                    alert('Incorrect login, Please try again');
+                }else{
+                    jQuery.mobile.changePage('#yourTrip',{transition:"none"});
+                }
+            })
+            .fail(function(data){
+                alert("Error passing data to SLIM");
+            });//End Ajax
 
-          });
+            function loginJSON(){
+                  return JSON.stringify({
+                         "Customer_Id":$('#txfLoginCustID').val(),
+                         "Email":$('#txfLoginEmail').val(),
+                         "Password":$('#txfLoginPassword').val()
+                         });
+                  }
 
-		$("#homepage").live("pagebeforehide", function(){
-//             alert("Before hide homepage");
-        }); // end homepage live pagebeforehide
-        // END Homepage Event Handlers             
-        
-
-        // Page 1 Event Handlers
-        $("#page1").live("pagebeforeshow", function(event){
-//              alert("before page1 show");
-//			  console.log('before page1 show');
         });
-                 
-        $("#page1").live("pageshow", function(){
-//             alert("page1 show");
-//			 console.log('page1 show');
-        }); // end  live pageshow
-            
-     	$("#page1").live("pagebeforehide", function(){
-//             alert("Before hide page1");
-        }); // end page1 live pagebeforehide
-		// End Page 1 Events Handlers
+
+		$("#account").live("pagebeforeshow",function(){
+            //send Ajax GET request to retrieve all customer data
+            //id for route controller
+            var customer = localStorage.getItem('ID');
+//            alert(customer);
+
+            $.ajax({
+                type: 'GET', //GET,POST,PUT or DELETE
+                url: rootURL + 'customer/'+customer, //the URI of the WS
+                dataType: "JSON", //json,xml,etc
+              })
+              .done(function(data){
+              //execute when ajax successfully completes
+//                alert("prefill forms");
+                $("#EtxfID").val(data[0].Customer_Id);
+                $("#EtxfEmail").val(data[0].Email);
+                $("#EtxfName").val(data[0].First_Name);
+                $("#EtxfMiddle").val(data[0].Middle_Initial);
+                $("#EtxfLast").val(data[0].Last_Name);
+                $("#EtxfStreetNo").val(data[0].Street_No);
+                $("#EtxfStreetName").val(data[0].Street_Name);
+                $("#EtxfSuburb").val(data[0].Suburb);
+                $("#EtxfPost").val(data[0].Postcode);
+                $("#EtxfPhone").val(data[0].Phone);
+
+
+              })
+              .always(function() {
+               })
+              .fail(function(data){
+                /* Execute when ajax falls over */
+                alert("Error connecting to Webservice.\nTry again");
+              });//end Ajax
+
+
+
+
+		});
+
+		$("#EbtnSubmit").on("click",function(){
+
+		    alert('Submitting edit form');
+
+
+
+		})
+
 
         $("#btnSubmit").on("click",function(){
 
             alert('submit clicked');
-            var url = "customer/add/";
-            var c=[];
-            c.CustomerID = $("#txfCustomerID").val();
-            c.Email = $("#txfEmail").val();
-            c.Password = $("#txfPassword").val();
-            c.Name = $("#txfName").val();
-            c.Middle = $("#txfMiddle").val();
-            c.Last = $("#txfLast").val();
-            c.StreetNo = $("#txfStreetNo").val();
-            c.StreetName = $("#txfStreetName").val();
-            c.Suburb = $("#txfSuburb").val();
-            c.Postcode = $("#txfPost").val();
-            c.Phone = $("#txfPhone").val();
 
             $.ajax({
                 type: "POST",
                 contentType: 'application/json',
-                url: rootURL + '/customer/add',
+                url: rootURL + 'customer/add',
                 dataType:'JSON',
                 data: registerJSON(),
-            })
+            }).done(function(data){
 
-            .done(function(data){
-            alert('done!');
-            localStorage.auth = data.AKEY;
-            localStorage.email = data.email;
+            alert(data.Auth);
+
+            var ID = $("#txfCustomerID").val();
+            var Email = $("#txfEmail").val();
+
+            localStorage.setItem('Auth',data.Auth);
+            localStorage.setItem('ID',ID);
+            localStorage.setItem('Email',Email);
+
+            alert(localStorage.getItem('Auth'));
+            alert(localStorage.getItem('ID'));
+            alert(localStorage.getItem('Email'));
+
             jQuery.mobile.changePage('#homepage',{transition:"none"});
-            })
-            .always(function(){})
-            .fail(function(data){alert("registration failed");})
+
+            }).fail(function(data){alert("registration failed");});
 
             function registerJSON(){
                    return JSON.stringify({
-                      "Customer_Id":c.CustomerID,
-                      "First_Name":c.Name,
-                      "Middle_Initial":c.Middle,
-                      "Last_Name":c.Last,
-                      "Street_No":c.StreetNo,
-                      "Street_Name":c.StreetName,
-                      "Suburb":c.Suburb,
-                      "Postcode":c.Postcode,
-                      "Email":c.Email,
-                      "Phone":c.Phone,
-                      "Password":c.Password,
+                      "Customer_Id":$('#txfCustomerID').val(),
+                      "First_Name":$('#txfName').val(),
+                      "Middle_Initial":$('#txfMiddle').val(),
+                      "Last_Name":$('#txfLast').val(),
+                      "Street_No":$('#txfStreetNo').val(),
+                      "Street_Name":$('#txfStreetName').val(),
+                      "Suburb":$('#txfSuburb').val(),
+                      "Postcode":$('#txfPost').val(),
+                      "Email":$('#txfEmail').val(),
+                      "Phone":$('#txfPhone').val(),
+                      "Password":$('#txfPassword').val()
                       });
-                }
+                };
 
         });
 

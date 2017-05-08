@@ -48,7 +48,7 @@
 
     <div data-role="content">
         <div class="ui-grid-solo">
-            <div align="center"><img src="img/phoenix.png" style="width:70%;"/></div>
+            <div align="center"><img src="img/phoenix.png" style="width:50%;"/></div>
         </div>
         <div class="ui-grid-solo">
             <h1>Phoenix Travel</h1><br/>
@@ -57,17 +57,18 @@
         <form action="" method="post">
             <div class="ui-grid-solo">
                 <div data-role="fieldcontain">
-                    <label for="txfUser">Username</label>
-                    <input type="text" name="name" id="txfUser"/>
+                    <label for="txfLoginCustID">Customer ID</label>
+                    <input type="text" name="txfLoginCustID" id="txfLoginCustID" readonly="readonly" style="background-color:lightgrey;"/>
+                    <label for="txfLoginEmail">Email</label>
+                    <input type="text" name="txfLoginEmail" id="txfLoginEmail" readonly="readonly" style="background-color:lightgrey;"/>
                     <br/>
-                    <label for="txfPass">Password</label>
-                    <input type="password" name="name" id="txfPass"/>
+                    <label for="txfLoginPassword">Password</label>
+                    <input type="password" name="txfLoginPassword" id="txfLoginPassword"/>
                 </div>
             </div>
 
             <div data-role="fieldcontain">
-                <a href="#yourTrip" data-role="button" data-theme="b" id="btnSignIn">SIGN IN</a>
-                <a href="#register" data-role="button" data-theme="c" id="btnRegister">REGISTER</a>
+                <a href="" data-role="button" data-theme="b" id="btnSignIn">SIGN IN</a>
 
             </div>
 
@@ -83,7 +84,7 @@
 
     <div data-role="header">
         <h1>Your Trip</h1>
-        <a href="#homepage" data-theme="b" name="logout">Log out</a>
+        <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
     <div data-role="content">
         <div class="ui-grid-solo">
@@ -193,7 +194,7 @@
                     <br/>
 
                     <label for="txfLast">Last Name</label>
-                    <input type="text" name="txflast" id="txfLast" data-mini="true"/>
+                    <input type="text" name="txfLast" id="txfLast" data-mini="true"/>
                 </div>
                 <br/>
 
@@ -385,7 +386,7 @@
 <div data-role="page" id="account" data-add-back-btn="true">
     <div data-role="header">
         <h1>Account Edit</h1>
-        <a href="#homepage" data-theme="b" name="logout">Log out</a>
+        <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
 
     <div data-role="content">
@@ -393,21 +394,21 @@
 
             <div class="ui-grid-solo">
                 <div data-role="fieldcontain">
-                    <label for="EtxfEmail">Email (or username)</label>
-                    <input type="text" name="EtxfEmail" id="EtxfEmail"/>
-                    <p>Will be used as a username</p>
+                    <label for="EtxfID">Customer ID</label>
+                    <input type="text" name="EtxfID" id="EtxfID" readonly="readonly" style="background-color:lightgrey;"/>
+                    <p>Contact Staff to request for a Customer ID change</p>
                     <br/>
 
-                    <label for="EtxfPassword">Password</label>
-                    <input type="Password" name="EtxfPassword" id="EtxfPassword"/>
-                    <p>8-16 characters, no symbols</p>
+                    <label for="EtxfEmail">Email (or username)</label>
+                    <input type="text" name="EtxfEmail" id="EtxfEmail" readonly="readonly" style="background-color:lightgrey;"/>
+                    <p>Contact Staff to request for an Email Address change</p>
                     <br/>
 
                     <label for="EtxfName">Full Name</label>
                     <input type="text" name="EtxfName" id="EtxfName" data-mini="true"/>
                     <br/>
 
-                    <label for="EtxfName">Middle Initial</label>
+                    <label for="EtxfMiddle">Middle Initial</label>
                     <input type="text" name="EtxfMiddle" id="EtxfMiddle" data-mini="true"/>
                     <br/>
 
@@ -436,10 +437,8 @@
                 </div>
 
                 <div data-role="fieldcontain">
-                    <a href="#homepage" data-role="button" data-theme="a"
+                    <a href="" data-role="button" data-theme="a"
                        id="EbtnSubmit">APPLY CHANGES</a>
-                    <a href="#homepage" data-role="button" data-theme="a" id="EbtnCancel">DELETE
-                        ACCOUNT</a>
                 </div>
 
             </div>
