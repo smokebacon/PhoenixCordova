@@ -94,6 +94,10 @@ $(document).on("pageinit", function(){
             var customer = localStorage.getItem('ID');
 //            alert(customer);
 
+            //clear password field
+            $("#EtxfNewPass").val("");
+            $("#EtxfNewPassConfirm").val("");
+
             $.ajax({
                 type: 'GET', //GET,POST,PUT or DELETE
                 url: rootURL + 'customer/'+customer, //the URI of the WS
@@ -123,17 +127,79 @@ $(document).on("pageinit", function(){
               });//end Ajax
 
 
-
-
 		});
 
 		$("#EbtnSubmit").on("click",function(){
 
 		    alert('Submitting edit form');
 
+		    //TODO finish the code here
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + 'customer/edit',
+                dataType:'JSON',
+                data: editJSON(),
+            }).done(function(data){
+                alert('account updated successfully');
+
+                jQuery.mobile.changePage('#yourTrip',{transition:"none"});
+
+            }).fail(function(data){alert("registration failed");});
+
+            function editJSON(){
+                return JSON.stringify({
+            "Customer_Id":$("#EtxfID").val(),
+            "First_Name":$("#EtxfName").val(),
+            "Middle_Initial":$("#EtxfMiddle").val(),
+            "Last_Name":$("#EtxfLast").val(),
+            "Street_No":$("#EtxfStreetNo").val(),
+            "Street_Name":$("#EtxfStreetName").val(),
+            "Suburb":$("#EtxfSuburb").val(),
+            "Postcode":$("#EtxfPost").val(),
+            "Phone":$("#EtxfPhone").val()
+            });
+
+            };
 
 
-		})
+		});
+
+		$("#EbtnChangePassword").on("click",function(){
+
+		    alert('in Change password');
+		    //function will run only when users enter the new password correctly twice
+		    if($("#EtxfNewPass").val() == $("#EtxfNewPassConfirm").val()){
+
+		        $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: rootURL + 'customer/changepassword',
+                    dataType:'JSON',
+                    data: passJSON(),
+                }).done(function(data){
+                    alert('account password updated successfully');
+                    //set new auth as a localstorage data
+                    localStorage.setItem('Auth',data.Auth);
+                    //redirect back to the main page
+                    jQuery.mobile.changePage('#yourTrip',{transition:"none"});
+                }).fail(function(data){alert("password change: server failed");}); //end Ajax
+
+		        function passJSON(){
+                  return JSON.stringify({
+                    "Customer_Id":$("#EtxfID").val(),
+                    "Email":$("#EtxfEmail").val(),
+                    "Password":$("#EtxfNewPass").val()
+                    });
+
+                };
+
+		    }else{
+		        alert("Confirm password field does not match the new password");
+		    }
+
+
+		});
 
 
         $("#btnSubmit").on("click",function(){
