@@ -91,73 +91,42 @@ $(document).on("pageinit", function(){
             c.Postcode = $("#txfPost").val();
             c.Phone = $("#txfPhone").val();
 
-            var settings = {
-              "async": true,
-              "crossDomain": true,
-              "url": rootURL+ "customer/add/",
-              "method": "POST",
-              "headers": {
-                "content-type": "application/json",
-                "cache-control": "no-cache",
-                "postman-token": "8cde29d8-2bf5-16e4-4370-d93b8b324bdf"
-              },
-              "processData": false,
-              "data": "{\"Customer_Id\":\"020304\",\r\n\t\t\"First_Name\":\"First\",\r\n\t\t\"Middle_Initial\":\"m\",\r\n\t\t\"Last_Name\":\"last\",\r\n\t\t\"Street_No\":\"Street\",\r\n\t\t\"Street_Name\":\"Name\",\r\n\t\t\"Suburb\":\"Sub\",\r\n\t\t\"Postcode\":\"1234\",\r\n\t\t\"Email\":\"What@.com\",\r\n\t\t\"Phone\":\"123423123\",\r\n\t\t\"Password\":\"pass\"}"
-            }
-
-            $.ajax(settings).done(function (response) {
-              alert('done');
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + '/customer/add',
+                dataType:'JSON',
+                data: registerJSON(),
             })
 
-//            $.ajax({
-//                type: "POST",
-//                contentType: 'application/json',
-//                url: rootURL + '/customer/add',
-//                dataType:'json',
-//                data: registerJSON(c),
-//            })
-//            .done(function(data){
-//            localStorage.auth = data.AKEY;
-//            localStorage.email = data.email;
-//            jQuery.mobile.changePage('#homepage',{transition:"none"});
-//            })
-//            .fail(function(data){alert("registration failed");});
+            .done(function(data){
+            alert('done!');
+            localStorage.auth = data.AKEY;
+            localStorage.email = data.email;
+            jQuery.mobile.changePage('#homepage',{transition:"none"});
+            })
+            .always(function(){})
+            .fail(function(data){alert("registration failed");})
 
-//            var settings = {
-//              "async": true,
-//              "crossDomain": true,
-//              "url": rootURL + "customer/add/",
-//              "method": "POST",
-//              "headers": {
-//              "content-type": "application/json",
-//              "cache-control": "no-cache",
-//              },
-//              "data": registerJSON(c)
-//            }
-//
-//            $.ajax(settings).done(function (response) {
-//              alert(response);
-//            });
-//
-
+            function registerJSON(){
+                   return JSON.stringify({
+                      "Customer_Id":c.CustomerID,
+                      "First_Name":c.Name,
+                      "Middle_Initial":c.Middle,
+                      "Last_Name":c.Last,
+                      "Street_No":c.StreetNo,
+                      "Street_Name":c.StreetName,
+                      "Suburb":c.Suburb,
+                      "Postcode":c.Postcode,
+                      "Email":c.Email,
+                      "Phone":c.Phone,
+                      "Password":c.Password,
+                      });
+                }
 
         });
-//
-//        function registerJSON(c){
-//                   return JSON.stringify({
-//                      "Customer_Id":c.CustomerID,
-//                      "First_Name":c.Name,
-//                      "Middle_Initial":c.Middle,
-//                      "Last_Name":c.Last,
-//                      "Street_No":c.StreetNo,
-//                      "Street_Name":c.StreetName,
-//                      "Suburb":c.Suburb,
-//                      "Postcode":c.Postcode,
-//                      "Email":c.Email,
-//                      "Phone":c.Phone,
-//                      "Password":c.Password,
-//                      });
-//                }
+
+
 
 
 
