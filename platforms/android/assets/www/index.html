@@ -28,8 +28,11 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+    <!--<meta http-equiv="Content-Security-Policy"-->
+          <!--content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
+
     <meta name="format-detection" content="telephone=no">
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport"
@@ -80,7 +83,7 @@
 
     <div data-role="header">
         <h1>Your Trip</h1>
-        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
+        <a href="#homepage" data-theme="b" name="logout">Log out</a>
     </div>
     <div data-role="content">
         <div class="ui-grid-solo">
@@ -228,7 +231,7 @@
 <div data-role="page" id="bookingList" data-add-back-btn="true">
     <div data-role="header">
         <h1>Booking List</h1>
-        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
+        <a href="#homepage" data-theme="b">Log out</a>
     </div>
     <div data-role="content">
         <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
@@ -291,7 +294,7 @@
 <div data-role="page" id="tourList" data-add-back-btn="true">
     <div data-role="header">
         <h1>All Tour List</h1>
-        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
+        <a href="#homepage" data-theme="b" name="logout">Log out</a>
     </div>
     <div data-role="content">
         <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
@@ -382,7 +385,7 @@
 <div data-role="page" id="account" data-add-back-btn="true">
     <div data-role="header">
         <h1>Account Edit</h1>
-        <a href="#homepage" data-theme="b" id="btnLogout">Log out</a>
+        <a href="#homepage" data-theme="b" name="logout">Log out</a>
     </div>
 
     <div data-role="content">
