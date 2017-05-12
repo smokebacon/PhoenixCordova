@@ -142,9 +142,7 @@ $(document).on("pageinit", function(){
                 data: editJSON(),
             }).done(function(data){
                 alert('account updated successfully');
-
                 jQuery.mobile.changePage('#yourTrip',{transition:"none"});
-
             }).fail(function(data){alert("registration failed");});
 
             function editJSON(){
