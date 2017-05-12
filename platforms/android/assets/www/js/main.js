@@ -16,24 +16,15 @@ $(document).on("pageinit", function(){
 
         var rootURL="http://10.0.2.2/sites/PhoenixSlim/"
 
-//        var CustomerID;
-//        var Email;
-//        var Password;
-//        var Name;
-//        var Middle;
-//        var Last;
-//        var StreetNo;
-//        var StreetName;
-//        var Suburb;
-//        var Postcode;
-//        var Phone;
-
         var storage = window.localStorage;
         var value = localStorage.getItem('Auth');
         var ID = localStorage.getItem('ID');
         var Email = localStorage.getItem('Email');
 
-
+		//TODO confirm Password
+        //TODO Register once, no login
+        //TODO Auto incremented customer ID
+        //TODO separated Account info, Password page
 
         // Billk added code
         if(pageinited){return;} else{pageinited= true;}
