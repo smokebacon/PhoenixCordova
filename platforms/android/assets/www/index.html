@@ -359,16 +359,17 @@
         <form action="" method="post">
 
                 <div data-role="fieldcontain">
-                    <label for="EtxfID">Customer ID</label>
-                    <input type="text" name="EtxfID" id="EtxfID" readonly
-                           style="background-color:lightgrey;"/>
-                    <br/>
 
-                    <label for="EtxfEmail">Email (or username)</label>
+                    <label for="EtxfEmail">Email</label>
                     <input type="text" name="EtxfEmail" id="EtxfEmail" readonly
                            style="background-color:lightgrey;"/>
-                    <br/>
+                </div>
 
+                <div data-role="collapsible-set">
+
+                    <div data-role="collapsible" data-collapsed="true">
+                        <h3>Edit info</h3>
+                    <div data-role="fieldcontain">
                     <h3>Info</h3>
                     <label for="EtxfName">Full Name</label>
                     <input type="text" name="EtxfName" id="EtxfName" data-mini="true"/>
@@ -380,10 +381,10 @@
 
                     <label for="EtxfLast">Last Name</label>
                     <input type="text" name="EtxfLast" id="EtxfLast" data-mini="true"/>
-                </div>
-                <br/>
+                    </div>
+                    <br/>
 
-                <div data-role="fieldcontain">
+                    <div data-role="fieldcontain">
                     <h3>Address</h3>
                     <label for="EtxfStreetNo">Street No</label>
                     <input type="text" name="EtxfStreetNo" id="EtxfStreetNo" data-mini="true"/>
@@ -400,27 +401,32 @@
                     <label for="EtxfPhone">Phone</label>
                     <input type="text" name="EtxfPhone" id="EtxfPhone" data-mini="true"/>
 
-                </div>
-
-                <div data-role="fieldcontain">
-                    <a href="" data-role="button" data-theme="a"
-                       id="EbtnSubmit">APPLY CHANGES</a>
-                </div>
-
-                <div data-role="fieldcontain">
-
-                    <br/>
-                    <label for="EtxfNewPass">New Password</label>
-                    <input type="password" name="EtxfNewPass" id="EtxfNewPass" data-mini="true"/>
-                    <br/>
-                    <label for="EtxfNewPassConfirm">Confirm New Password</label>
-                    <input type="password" name="EtxfNewPassConfirm" id="EtxfNewPassConfirm" data-mini="true"/>
+                    </div>
 
                     <div data-role="fieldcontain">
-                        <a href="" data-role="button" data-theme="b"
-                           id="EbtnChangePassword">Change Password</a>
+                    <a href="" data-role="button" data-theme="a"
+                       id="EbtnSubmit">APPLY CHANGES</a>
                     </div>
-                </div>
+
+                    </div> <!-- end edit info -->
+
+                    <div data-role="collapsible" data-collapsed="true">
+                    <h3>Change Password</h3>
+                    <div data-role="fieldcontain">
+                        <label for="EtxfNewPass">New Password</label>
+                        <input type="password" name="EtxfNewPass" id="EtxfNewPass" data-mini="true"/>
+                        <br/>
+                        <label for="EtxfNewPassConfirm">Confirm New Password</label>
+                        <input type="password" name="EtxfNewPassConfirm" id="EtxfNewPassConfirm" data-mini="true"/>
+
+                        <div data-role="fieldcontain">
+                            <a href="" data-role="button" data-theme="b"
+                               id="EbtnChangePassword">Change Password</a>
+                        </div>
+                    </div>
+                    </div>
+
+                </div> <!-- end set-->
 
         </form>
     </div>

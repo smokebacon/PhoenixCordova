@@ -14,17 +14,16 @@ var pageinited = false;
 /////////////////////////////////////////jquery On Document Ready
 $(document).on("pageinit", function(){
 
-        var rootURL="http://10.0.2.2/sites/PhoenixSlim/"
+        var rootURL="http://10.0.2.2/sites/PhoenixSlim/";
+
+        console.log("jQuery working");
 
         var storage = window.localStorage;
         var value = localStorage.getItem('Auth');
         var ID = localStorage.getItem('ID');
         var Email = localStorage.getItem('Email');
 
-		//TODO confirm Password
-        //TODO Register once, no login
-        //TODO Auto incremented customer ID
-        //TODO separated Account info, Password page
+		//TODO separated Account info, Password page
 
         // Billk added code
         if(pageinited){return;} else{pageinited= true;}
@@ -46,8 +45,8 @@ $(document).on("pageinit", function(){
 
 		$("#account").live("pagebeforeshow",function(){
             //send Ajax GET request to retrieve all customer data
-            //id for route controller
-            var customer = localStorage.getItem('ID');
+            var Auth = localStorage.getItem('Auth');
+            console.log(Auth);
 //            alert(customer);
 
             //clear password field
@@ -56,7 +55,7 @@ $(document).on("pageinit", function(){
 
             $.ajax({
                 type: 'GET', //GET,POST,PUT or DELETE
-                url: rootURL + 'customer/'+customer, //the URI of the WS
+                url: rootURL + 'customer/'+Auth, //the URI of the WS
                 dataType: "JSON", //json,xml,etc
               })
               .done(function(data){
@@ -72,8 +71,6 @@ $(document).on("pageinit", function(){
                 $("#EtxfSuburb").val(data[0].Suburb);
                 $("#EtxfPost").val(data[0].Postcode);
                 $("#EtxfPhone").val(data[0].Phone);
-
-
               })
               .always(function() {
                })
@@ -87,22 +84,23 @@ $(document).on("pageinit", function(){
 
 		$("#EbtnSubmit").on("click",function(){
 
-		    alert('Submitting edit form');
+		    console.log('Submitting edit form');
+		    var Email = $("#EtxfEmail").val();
 
             $.ajax({
                 type: "POST",
                 contentType: 'application/json',
-                url: rootURL + 'customer/edit',
+                url: rootURL + 'customer/edit/' + Email,
                 dataType:'JSON',
                 data: editJSON(),
             }).done(function(data){
-                alert('account updated successfully');
-                jQuery.mobile.changePage('#yourTrip',{transition:"none"});
+                console.log('account updated successfully');
+                console.log(editJSON().toString());
+                jQuery.mobile.changePage('#homepage',{transition:"none"});
             }).fail(function(data){alert("registration failed");});
 
             function editJSON(){
                 return JSON.stringify({
-            "Customer_Id":$("#EtxfID").val(),
             "First_Name":$("#EtxfName").val(),
             "Middle_Initial":$("#EtxfMiddle").val(),
             "Last_Name":$("#EtxfLast").val(),
@@ -120,7 +118,7 @@ $(document).on("pageinit", function(){
 
 		$("#EbtnChangePassword").on("click",function(){
 
-		    alert('in Change password');
+		    console.log('in Change password');
 		    //function will run only when users enter the new password correctly twice
 		    if($("#EtxfNewPass").val() == $("#EtxfNewPassConfirm").val()){
 
@@ -131,11 +129,13 @@ $(document).on("pageinit", function(){
                     dataType:'JSON',
                     data: passJSON(),
                 }).done(function(data){
-                    alert('account password updated successfully');
+                    console.log('account password updated successfully');
+                    console.log('old auth : ' + localStorage.getItem('Auth'));
+                    console.log('new auth : ' + data.Auth);
                     //set new auth as a localstorage data
                     localStorage.setItem('Auth',data.Auth);
                     //redirect back to the main page
-                    jQuery.mobile.changePage('#yourTrip',{transition:"none"});
+                    jQuery.mobile.changePage('#homepage',{transition:"none"});
                 }).fail(function(data){alert("password change: server failed");}); //end Ajax
 
 		        function passJSON(){
@@ -157,7 +157,7 @@ $(document).on("pageinit", function(){
 
         $("#btnRegister").on("click",function(){
 
-            alert('submit clicked');
+            console.log('submit clicked');
 
             if($("#txfPassword").val() == $("#txfConfirmPassword").val()){
             $.ajax({
