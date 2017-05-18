@@ -48,44 +48,8 @@
     <title>Hello World</title>
 </head>
 <body>
+
 <div data-role="page" id="homepage">
-
-    <div data-role="content">
-        <div class="ui-grid-solo">
-            <div align="center"><img src="img/phoenix.png" style="width:50%;"/></div>
-        </div>
-        <div class="ui-grid-solo">
-            <h1>Phoenix Travel</h1><br/>
-        </div>
-
-        <form action="" method="post">
-            <div class="ui-grid-solo">
-                <div data-role="fieldcontain">
-                    <label for="txfLoginCustID">Customer ID</label>
-                    <input type="text" name="txfLoginCustID" id="txfLoginCustID" readonly
-                           style="background-color:lightgrey;"/>
-                    <label for="txfLoginEmail">Email</label>
-                    <input type="text" name="txfLoginEmail" id="txfLoginEmail" readonly
-                           style="background-color:lightgrey;"/>
-                    <br/>
-                    <label for="txfLoginPassword">Password</label>
-                    <input type="password" name="txfLoginPassword" id="txfLoginPassword"/>
-                </div>
-            </div>
-
-            <div data-role="fieldcontain">
-                <a href="" data-role="button" data-theme="b" id="btnSignIn">SIGN IN</a>
-
-            </div>
-
-        </form>
-
-
-    </div>
-
-</div>
-
-<div data-role="page" id="yourTrip">
 
 
     <div data-role="header">
@@ -155,7 +119,7 @@
     <div data-role="footer" data-id="foo5" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="#yourTrip" data-theme="b">Your Trip</a></li>
+                <li><a href="#homepage" data-theme="b">Your Trip</a></li>
                 <li><a href="#bookingList">Bookings</a></li>
                 <li><a href="#tourList">All Tours</a></li>
                 <li><a href="#account">Account</a></li>
@@ -164,7 +128,7 @@
     </div>
 
 
-</div><!--End yourTrip-->
+</div><!--End homepage-->
 
 <div data-role="page" id="register" data-add-back-btn="false">
     <div data-role="header">
@@ -175,10 +139,6 @@
         <form action="" method="post">
 
                 <div data-role="fieldcontain">
-                    <label for="txfCustomerID">Customer Id</label>
-                    <input type="text" name="txfCustomerID" id="txfCustomerID"/>
-                    <p>Your membership number.</p>
-                    <br/>
 
                     <label for="txfEmail">Email (or username)</label>
                     <input type="text" name="txfEmail" id="txfEmail"/>
@@ -187,7 +147,10 @@
 
                     <label for="txfPassword">Password</label>
                     <input type="Password" name="txfPassword" id="txfPassword"/>
-                    <p>8-16 characters, no symbols</p>
+                    <br/>
+                    <input type="Password" name="txfConfirmPassword" id="txfConfirmPassword"/>
+                    <p style="font-size:0.8em;">8-16 characters, no symbols</p>
+
                     <br/>
 
                     <label for="txfName">Full Name</label>
@@ -224,7 +187,7 @@
 
                 <div data-role="fieldcontain">
                     <a data-role="button" data-theme="a"
-                       id="btnSubmit">REGISTER</a>
+                       id="btnRegister">REGISTER</a>
                     <a href="#homepage" data-role="button" data-theme="a" id="btnCancel">CANCEL</a>
                 </div>
 
@@ -286,7 +249,7 @@
     <div data-role="footer" data-id="foo4" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="#yourTrip">Your Trip</a></li>
+                <li><a href="#homepage">Your Trip</a></li>
                 <li><a href="#bookingList" data-theme="b">Bookings</a></li>
                 <li><a href="#tourList">All Tours</a></li>
                 <li><a href="#account">Account</a></li>
@@ -377,7 +340,7 @@
     <div data-role="footer" data-id="foo1" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="#yourTrip">Your Trip</a></li>
+                <li><a href="#homepage">Your Trip</a></li>
                 <li><a href="#bookingList">Bookings</a></li>
                 <li><a href="#tourList" data-theme="b">All Tours</a></li>
                 <li><a href="#account">Account</a></li>
@@ -465,7 +428,7 @@
     <div data-role="footer" data-id="foo2" data-position="fixed">
         <div data-role="navbar">
             <ul>
-                <li><a href="#yourTrip">Your Trip</a></li>
+                <li><a href="#homepage">Your Trip</a></li>
                 <li><a href="#bookingList">Bookings</a></li>
                 <li><a href="#tourList">All Tours</a></li>
                 <li><a href="#account" data-theme="b">Account</a></li>

@@ -35,49 +35,14 @@ $(document).on("pageinit", function(){
 
         if(localStorage.getItem('Auth') == null)
         {
-            alert("No users found, please register");
+            console.log("No users found, please register");
             jQuery.mobile.changePage('#register',{transition:"none"});
         }else{
             jQuery.mobile.changePage('#homepage',{transition:"none"});
-            $('#txfLoginCustID').val(localStorage.getItem('ID'));
-            $('#txfLoginEmail').val(localStorage.getItem('Email'));
         }
 
         }); // end homepage live beforepageshow
 
-        $("#btnSignIn").on("click",function(){
-//                  alert('On signin button');
-            $.ajax({
-                type: "POST",
-                contentType: 'application/json',
-                url: rootURL + 'customer/getAuth',
-                dataType: 'JSON',
-                data: loginJSON(),
-            })
-            .done(function(data){
-//              alert('completed, now comparing localstorage...');
-                value = storage.getItem('Auth');
-//              alert(value);
-//              alert(data.Auth);
-                if(value != data.Auth){
-                    alert('Incorrect login, Please try again');
-                }else{
-                    jQuery.mobile.changePage('#yourTrip',{transition:"none"});
-                }
-            })
-            .fail(function(data){
-                alert("Error passing data to SLIM");
-            });//End Ajax
-
-            function loginJSON(){
-                  return JSON.stringify({
-                         "Customer_Id":$('#txfLoginCustID').val(),
-                         "Email":$('#txfLoginEmail').val(),
-                         "Password":$('#txfLoginPassword').val()
-                         });
-                  }
-
-        });
 
 		$("#account").live("pagebeforeshow",function(){
             //send Ajax GET request to retrieve all customer data
@@ -124,7 +89,6 @@ $(document).on("pageinit", function(){
 
 		    alert('Submitting edit form');
 
-		    //TODO finish the code here
             $.ajax({
                 type: "POST",
                 contentType: 'application/json',
@@ -191,10 +155,11 @@ $(document).on("pageinit", function(){
 		});
 
 
-        $("#btnSubmit").on("click",function(){
+        $("#btnRegister").on("click",function(){
 
             alert('submit clicked');
 
+            if($("#txfPassword").val() == $("#txfConfirmPassword").val()){
             $.ajax({
                 type: "POST",
                 contentType: 'application/json',
@@ -203,18 +168,9 @@ $(document).on("pageinit", function(){
                 data: registerJSON(),
             }).done(function(data){
 
-            alert(data.Auth);
-
-            var ID = $("#txfCustomerID").val();
-            var Email = $("#txfEmail").val();
-
             localStorage.setItem('Auth',data.Auth);
-            localStorage.setItem('ID',ID);
-            localStorage.setItem('Email',Email);
 
-            alert(localStorage.getItem('Auth'));
-            alert(localStorage.getItem('ID'));
-            alert(localStorage.getItem('Email'));
+            console.log("Auth generated! : " + localStorage.getItem('Auth'));
 
             jQuery.mobile.changePage('#homepage',{transition:"none"});
 
@@ -222,7 +178,6 @@ $(document).on("pageinit", function(){
 
             function registerJSON(){
                    return JSON.stringify({
-                      "Customer_Id":$('#txfCustomerID').val(),
                       "First_Name":$('#txfName').val(),
                       "Middle_Initial":$('#txfMiddle').val(),
                       "Last_Name":$('#txfLast').val(),
@@ -235,6 +190,10 @@ $(document).on("pageinit", function(){
                       "Password":$('#txfPassword').val()
                       });
                 };
+             }else{
+                alert("Password not match");
+                $("#txfPassword").focus();
+             }
 
         });
 
