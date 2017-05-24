@@ -32,7 +32,7 @@ $(document).on("pageinit", function(){
         // Homepage Event Handlers
         $("#homepage").live("pagebeforeshow", function(){
 
-        if(localStorage.getItem('Auth') == null)
+        if(localStorage.getItem('Auth') === null)
         {
             console.log("No users found, please register");
             jQuery.mobile.changePage('#register',{transition:"none"});
@@ -56,7 +56,7 @@ $(document).on("pageinit", function(){
             $.ajax({
                 type: 'GET', //GET,POST,PUT or DELETE
                 url: rootURL + 'customer/'+Auth, //the URI of the WS
-                dataType: "JSON", //json,xml,etc
+                dataType: "JSON" //json,xml,etc
               })
               .done(function(data){
               //execute when ajax successfully completes
@@ -111,7 +111,7 @@ $(document).on("pageinit", function(){
             "Phone":$("#EtxfPhone").val()
             });
 
-            };
+            }
 
 
 		});
@@ -127,7 +127,7 @@ $(document).on("pageinit", function(){
                     contentType: 'application/json',
                     url: rootURL + 'customer/changepassword',
                     dataType:'JSON',
-                    data: passJSON(),
+                    data: passJSON()
                 }).done(function(data){
                     console.log('account password updated successfully');
                     console.log('old auth : ' + localStorage.getItem('Auth'));
@@ -165,7 +165,7 @@ $(document).on("pageinit", function(){
                 contentType: 'application/json',
                 url: rootURL + 'customer/add',
                 dataType:'JSON',
-                data: registerJSON(),
+                data: registerJSON()
             }).done(function(data){
 
             localStorage.setItem('Auth',data.Auth);
@@ -189,7 +189,7 @@ $(document).on("pageinit", function(){
                       "Phone":$('#txfPhone').val(),
                       "Password":$('#txfPassword').val()
                       });
-                };
+                }
              }else{
                 alert("Password not match");
                 $("#txfPassword").focus();
