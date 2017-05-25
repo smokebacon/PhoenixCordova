@@ -198,6 +198,7 @@
 <div data-role="page" id="bookingList" data-add-back-btn="true">
     <div data-role="header">
         <h1>Booking List</h1>
+        <a href="newBooking" data-icon="plus" class="ui-btn-right">New</a>
         <!--<a href="#homepage" data-theme="b">Log out</a>-->
     </div>
     <div data-role="content">
@@ -258,12 +259,29 @@
     </div>
 </div>
 
+<div data-role="page" id="newBooking" data-add-back-btn="true">
+    <div data-role="header">
+        <h1>Add New Booking</h1>
+    </div>
+    <div data-role="content">
+        <!--TODO form to put in bookings details here-->
+        <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
+
+
+    </div>
+</div>
+
 <div data-role="page" id="tourList" data-add-back-btn="true">
     <div data-role="header">
         <h1>All Tour List</h1>
         <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
     <div data-role="content">
+
+    <h1>Tour Name</h1>
+        <input type="text" name="txfSearchTourName" id="txfSearchTourName" data-mini="true"/>
+            <button data-theme="b">Search for available tour</button>
+
         <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
         <ul data-role="listview" data-inset="true" class="card">
 
@@ -445,7 +463,6 @@
 
 <script type="text/javascript" src="cordova.js"></script>
 <script type="text/javascript" src="js/index.js"></script>
-<script type=""
 <script src="js/main.js"></script><!--Main js Scripts-->
 </body>
 </html>

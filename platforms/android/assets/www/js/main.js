@@ -42,6 +42,21 @@ $(document).on("pageinit", function(){
 
         }); // end homepage live beforepageshow
 
+        //Tourlist preload functions
+        $("#tourList").live("pagebeforeshow",function(){
+
+            var Auth = localStorage.getItem('Auth');
+            console.log(Auth);
+
+            $.ajax({
+                type:"GET",
+                beforeSend: function(request){
+                    request.setRequestHeader("Auth",auth);
+                },
+                url: rootUrl + 'booking'
+            })
+
+        });
 
 		$("#account").live("pagebeforeshow",function(){
             //send Ajax GET request to retrieve all customer data
