@@ -18,8 +18,9 @@
     under the License.
 -->
 <html>
+
 <head>
-    <!--
+  <!--
     Customize this policy to fit your own app's needs. For more guidance, see:
         https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
     Some notes:
@@ -28,182 +29,184 @@
         * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
             * Enable inline JS: add 'unsafe-inline' to default-src
     -->
-    <!--<meta http-equiv="Content-Security-Policy"-->
-    <!--content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
+  <!--<meta http-equiv="Content-Security-Policy"-->
+  <!--content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">-->
 
 
 
-    <meta http-equiv="Content-Security-Policy"
-          content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' http://* 'unsafe-inline'; script-src 'self' http://* 'unsafe-inline' 'unsafe-eval'" />
 
-    <meta name="format-detection" content="telephone=no">
-    <meta name="msapplication-tap-highlight" content="no">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
-    <link href="jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css"/>
-    <script src="jquery-mobile/jquery-1.7.2.min.js" type="text/javascript"></script>
-    <script src="jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+  <meta name="format-detection" content="telephone=no">
+  <meta name="msapplication-tap-highlight" content="no">
+  <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <link href="jquery-mobile/jquery.mobile-1.4.5.min.css" rel="stylesheet" type="text/css" />
+  <script src="jquery-mobile/jquery-1.7.2.min.js" type="text/javascript"></script>
+  <script src="jquery-mobile/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
 
-    <title>Hello World</title>
+  <title>Hello World</title>
 </head>
+
 <body>
 
-<div data-role="page" id="homepage">
+  <div data-role="page" id="homepage">
 
 
     <div data-role="header">
-        <h1>Your Trip</h1>
-        <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
+      <h1>Your Trip</h1>
+      <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
     <div data-role="content">
-        <div class="ui-grid-solo">
+      <div class="ui-grid-solo">
 
 
-            <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
-            <ul data-role="listview" data-inset="true" class="card">
+        <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
+        <ul data-role="listview" data-inset="true" class="card">
 
-                <li data-role="list-divider">
-                    <h1 id="tourHead1">TOUR NAME</h1>
-                </li>
-                <li>
-                    <div style="padding-right:4px;">
-                        <a href="" data-role="button" onclick="viewItinerary1">View Itinerary</a>
-                    </div>
+          <li data-role="list-divider">
+            <h1 id="tourHead1">TOUR NAME</h1>
+          </li>
+          <li>
+            <div style="padding-right:4px;">
+              <a href="" data-role="button" onclick="viewItinerary1">View Itinerary</a>
+            </div>
 
-                    <div style="padding-right:4px;" align="center">
-                        <h4 id="tripDate1">Date</h4>
-                    </div>
+            <div style="padding-right:4px;" align="center">
+              <h4 id="tripDate1">Date</h4>
+            </div>
 
-                </li>
-            </ul>
-            <ul data-role="listview" data-inset="true" class="card">
+          </li>
+        </ul>
+        <ul data-role="listview" data-inset="true" class="card">
 
-                <li data-role="list-divider">
-                    <h1 id="tourHead2">TOUR NAME</h1>
-                </li>
-                <li>
-                    <div style="padding-right:4px;">
-                        <a href="" data-role="button" onclick="viewItinerary2">View Itinerary</a>
-                    </div>
+          <li data-role="list-divider">
+            <h1 id="tourHead2">TOUR NAME</h1>
+          </li>
+          <li>
+            <div style="padding-right:4px;">
+              <a href="" data-role="button" onclick="viewItinerary2">View Itinerary</a>
+            </div>
 
-                    <div style="padding-right:4px;" align="center">
-                        <h4 id="tripDate2">Date</h4>
-                    </div>
+            <div style="padding-right:4px;" align="center">
+              <h4 id="tripDate2">Date</h4>
+            </div>
 
-                </li>
-            </ul>
-            <ul data-role="listview" data-inset="true" class="card">
+          </li>
+        </ul>
+        <ul data-role="listview" data-inset="true" class="card">
 
-                <li data-role="list-divider">
-                    <h1 id="tourHead3">TOUR NAME</h1>
-                </li>
-                <li>
-                    <div style="padding-right:4px;">
-                        <a href="" data-role="button" onclick="viewItinerary3">View Itinerary</a>
-                    </div>
+          <li data-role="list-divider">
+            <h1 id="tourHead3">TOUR NAME</h1>
+          </li>
+          <li>
+            <div style="padding-right:4px;">
+              <a href="" data-role="button" onclick="viewItinerary3">View Itinerary</a>
+            </div>
 
-                    <div style="padding-right:4px;" align="center">
-                        <h4 id="tripDate3">Date</h4>
-                    </div>
+            <div style="padding-right:4px;" align="center">
+              <h4 id="tripDate3">Date</h4>
+            </div>
 
-                </li>
-            </ul>
+          </li>
+        </ul>
 
 
-            <!--END TODO-->
+        <!--END TODO-->
 
-        </div>
+      </div>
     </div>
 
     <div data-role="footer" data-id="foo5" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#homepage" data-theme="b">Your Trip</a></li>
-                <li><a href="#bookingList">Bookings</a></li>
-                <li><a href="#tourList">All Tours</a></li>
-                <li><a href="#account">Account</a></li>
-            </ul>
-        </div><!-- /navbar -->
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#homepage" data-theme="b">Your Trip</a></li>
+          <li><a href="#bookingList">Bookings</a></li>
+          <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#account">Account</a></li>
+        </ul>
+      </div>
+      <!-- /navbar -->
     </div>
 
 
-</div><!--End homepage-->
+  </div>
+  <!--End homepage-->
 
-<div data-role="page" id="register" data-add-back-btn="false">
+  <div data-role="page" id="register" data-add-back-btn="false">
     <div data-role="header">
-        <h1>Register</h1>
+      <h1>Register</h1>
     </div>
 
     <div data-role="content">
-        <form action="" method="post">
+      <form action="" method="post">
 
-                <div data-role="fieldcontain">
+        <div data-role="fieldcontain">
 
-                    <label for="txfEmail">Email (or username)</label>
-                    <input type="text" name="txfEmail" id="txfEmail"/>
-                    <p>Will be used as a username</p>
-                    <br/>
+          <label for="txfEmail">Email (or username)</label>
+          <input type="text" name="txfEmail" id="txfEmail" />
+          <p>Will be used as a username</p>
+          <br/>
 
-                    <label for="txfPassword">Password</label>
-                    <input type="Password" name="txfPassword" id="txfPassword"/>
-                    <br/>
-                    <input type="Password" name="txfConfirmPassword" id="txfConfirmPassword"/>
-                    <p style="font-size:0.8em;">8-16 characters, no symbols</p>
+          <label for="txfPassword">Password</label>
+          <input type="Password" name="txfPassword" id="txfPassword" />
+          <br/>
+          <input type="Password" name="txfConfirmPassword" id="txfConfirmPassword" />
+          <p style="font-size:0.8em;">8-16 characters, no symbols</p>
 
-                    <br/>
+          <br/>
 
-                    <label for="txfName">Full Name</label>
-                    <input type="text" name="txfName" id="txfName" data-mini="true"/>
-                    <br/>
+          <label for="txfName">Full Name</label>
+          <input type="text" name="txfName" id="txfName" data-mini="true" />
+          <br/>
 
-                    <label for="txfMiddle">Middle Initial</label>
-                    <input type="text" name="txfMiddle" id="txfMiddle" data-mini="true"/>
-                    <br/>
+          <label for="txfMiddle">Middle Initial</label>
+          <input type="text" name="txfMiddle" id="txfMiddle" data-mini="true" />
+          <br/>
 
-                    <label for="txfLast">Last Name</label>
-                    <input type="text" name="txfLast" id="txfLast" data-mini="true"/>
-                </div>
-                <br/>
+          <label for="txfLast">Last Name</label>
+          <input type="text" name="txfLast" id="txfLast" data-mini="true" />
+        </div>
+        <br/>
 
-                <div data-role="fieldcontain">
-                    <h3>Address</h3>
-                    <label for="txfStreetNo">Street No</label>
-                    <input type="text" name="txfStreetNo" id="txfStreetNo" data-mini="true"/>
+        <div data-role="fieldcontain">
+          <h3>Address</h3>
+          <label for="txfStreetNo">Street No</label>
+          <input type="text" name="txfStreetNo" id="txfStreetNo" data-mini="true" />
 
-                    <label for="txfStreetName">Street Name</label>
-                    <input type="text" name="txfStreetName" id="txfStreetName" data-mini="true"/>
+          <label for="txfStreetName">Street Name</label>
+          <input type="text" name="txfStreetName" id="txfStreetName" data-mini="true" />
 
-                    <label for="txfSuburb">Suburb</label>
-                    <input type="text" name="txfSuburb" id="txfSuburb" data-mini="true"/>
+          <label for="txfSuburb">Suburb</label>
+          <input type="text" name="txfSuburb" id="txfSuburb" data-mini="true" />
 
-                    <label for="txfPost">Post Code</label>
-                    <input type="text" name="txfPost" id="txfPost" data-mini="true"/>
+          <label for="txfPost">Post Code</label>
+          <input type="text" name="txfPost" id="txfPost" data-mini="true" />
 
-                    <label for="txfPhone">Phone</label>
-                    <input type="text" name="txfPhone" id="txfPhone" data-mini="true"/>
+          <label for="txfPhone">Phone</label>
+          <input type="text" name="txfPhone" id="txfPhone" data-mini="true" />
 
-                </div>
+        </div>
 
-                <div data-role="fieldcontain">
-                    <a data-role="button" data-theme="a"
-                       id="btnRegister">REGISTER</a>
-                    <a href="#homepage" data-role="button" data-theme="a" id="btnCancel">CANCEL</a>
-                </div>
+        <div data-role="fieldcontain">
+          <a data-role="button" data-theme="a" id="btnRegister">REGISTER</a>
+          <a href="#homepage" data-role="button" data-theme="a" id="btnCancel">CANCEL</a>
+        </div>
 
-        </form>
+      </form>
     </div>
-</div>
+  </div>
 
-<div data-role="page" id="bookingList" data-add-back-btn="true">
+  <div data-role="page" id="bookingList" data-add-back-btn="true">
     <div data-role="header">
-        <h1>Booking List</h1>
-        <a href="newBooking" data-icon="plus" class="ui-btn-right">New</a>
-        <!--<a href="#homepage" data-theme="b">Log out</a>-->
+      <h1>Booking List</h1>
+      <a href="#tourList" class="ui-btn-right" data-theme="c">New booking</a>
+      <!--<a href="#homepage" data-theme="b">Log out</a>-->
     </div>
     <div data-role="content">
-        <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
-        <ul data-role="listview" data-inset="true" class="card">
+
+      <div id="populateBookingData"></div>
+
+      <!-- <ul data-role="listview" data-inset="true" class="card">
 
             <li data-role="list-divider">
                 <h1 id="bookingTourHead1">TOUR HEAD 1</h1>
@@ -216,255 +219,181 @@
                 </div>
 
             </li>
-        </ul>
-        <ul data-role="listview" data-inset="true" class="card">
+        </ul> -->
 
-            <li data-role="list-divider">
-                <h1 id="bookingTourHead2">TOUR HEAD 2</h1>
-            </li>
-            <li>
-                <h3 id="lblBookingNo2" align="center">Trip Booking No</h3>
-                <h4 id="bookingNo2" align="center">AJD12341</h4>
-                <div>
-                    <a href="" data-role="button" data-theme="b" id="bookingStatus2">Pending</a>
-                </div>
-
-            </li>
-        </ul>
-        <ul data-role="listview" data-inset="true" class="card">
-
-            <li data-role="list-divider">
-                <h1 id="bookingTourHead3">TOUR HEAD 3</h1>
-            </li>
-            <li>
-                <h3 id="lblBookingNo3" align="center">Trip Booking No</h3>
-                <h4 id="bookingNo3" align="center">AJD12341</h4>
-                <div>
-                    <a href="" data-role="button" data-theme="b" id="bookingStatus3">Pending</a>
-                </div>
-
-            </li>
-        </ul>
     </div>
 
     <div data-role="footer" data-id="foo4" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#homepage">Your Trip</a></li>
-                <li><a href="#bookingList" data-theme="b">Bookings</a></li>
-                <li><a href="#tourList">All Tours</a></li>
-                <li><a href="#account">Account</a></li>
-            </ul>
-        </div><!-- /navbar -->
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#homepage">Your Trip</a></li>
+          <li><a href="#bookingList" data-theme="b">Bookings</a></li>
+          <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#account">Account</a></li>
+        </ul>
+      </div>
+      <!-- /navbar -->
     </div>
-</div>
+  </div>
 
-<div data-role="page" id="newBooking" data-add-back-btn="true">
+  <div data-role="page" id="newBooking" data-add-back-btn="true">
     <div data-role="header">
-        <h1>Add New Booking</h1>
+      <h1>Add New Booking</h1>
     </div>
     <div data-role="content">
-        <!--TODO form to put in bookings details here-->
-        <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
+      <!--TODO form to put in bookings details here-->
+      <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
 
 
     </div>
-</div>
+  </div>
 
-<div data-role="page" id="tourList" data-add-back-btn="true">
+  <div data-role="page" id="tourList" data-add-back-btn="true">
     <div data-role="header">
-        <h1>All Tour List</h1>
-        <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
+      <h1>All Tour List</h1>
+      <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
     <div data-role="content">
 
-    <!--<h1>Tour Name</h1>-->
-        <!--<input type="text" name="txfSearchTourName" id="txfSearchTourName" data-mini="true"/>-->
-            <!--<button data-theme="b">Search for available tour</button>-->
-    <div id="populateTourData">
-        <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
-        <!--<ul data-role="listview" data-inset="true" class="card">-->
+      <div data-role="listview" data-inset="true" class="card">
+        <li>
+          <div align="center">
+              <input type="search" name="search" placeholder="Search Tour" id="txfSearchTour" value="" />
+              <a href="" data-role="button" data-inset="true" data-theme="b" id="btnSearchTour">Search</a>
+          </div>
+        </li>
+      </div>
 
-            <!--<li data-role="list-divider">-->
-                <!--<h1 id="allTourHead1">TOUR 1</h1>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="" data-role="button" data-theme="c" id="tourView1">View Itinerary</a>-->
-                    <!--<a href="" data-role="button" data-theme="a" id="tourBook1">Book Trip</a>-->
-                <!--</div>-->
+      <div id="populateTourData"></div>
+      <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
+      <!--<ul data-role="listview" data-inset="true" class="card">-->
 
-            <!--</li>-->
-        <!--</ul>-->
+      <!--<li data-role="list-divider">-->
+      <!--<h1 id="allTourHead1">TOUR 1</h1>-->
+      <!--</li>-->
+      <!--<li>-->
+      <!--<div>-->
+      <!--<a href="" data-role="button" data-theme="c" id="tourView1">View Itinerary</a>-->
+      <!--<a href="" data-role="button" data-theme="a" id="tourBook1">Book Trip</a>-->
+      <!--</div>-->
 
-        <!--<ul data-role="listview" data-inset="true" class="card">-->
+      <!--</li>-->
+      <!--</ul>-->
 
-            <!--<li data-role="list-divider">-->
-                <!--<h1 id="allTourHead2">TOUR 2</h1>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="" data-role="button" data-theme="c" id="tourView2">View Itinerary</a>-->
-                    <!--<a href="" data-role="button" data-theme="a" id="tourBook2">Book Trip</a>-->
-                <!--</div>-->
-
-            <!--</li>-->
-        <!--</ul>-->
-
-        <!--<ul data-role="listview" data-inset="true" class="card">-->
-
-            <!--<li data-role="list-divider">-->
-                <!--<h1 id="allTourHead3">TOUR 3</h1>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="" data-role="button" data-theme="c" id="tourView3">View Itinerary</a>-->
-                    <!--<a href="" data-role="button" data-theme="a" id="tourBook3">Book Trip</a>-->
-                <!--</div>-->
-
-            <!--</li>-->
-        <!--</ul>-->
-
-        <!--<ul data-role="listview" data-inset="true" class="card">-->
-
-            <!--<li data-role="list-divider">-->
-                <!--<h1 id="allTourHead4">TOUR 4</h1>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="" data-role="button" data-theme="c" id="tourView4">View Itinerary</a>-->
-                    <!--<a href="" data-role="button" data-theme="a" id="tourBook4">Book Trip</a>-->
-                <!--</div>-->
-
-            <!--</li>-->
-        <!--</ul>-->
-
-        <!--<ul data-role="listview" data-inset="true" class="card">-->
-
-            <!--<li data-role="list-divider">-->
-                <!--<h1 id="allTourHead5">TOUR 5</h1>-->
-            <!--</li>-->
-            <!--<li>-->
-                <!--<div>-->
-                    <!--<a href="" data-role="button" data-theme="c" id="tourView5">View Itinerary</a>-->
-                    <!--<a href="" data-role="button" data-theme="a" id="tourBook5">Book Trip</a>-->
-                <!--</div>-->
-
-            <!--</li>-->
-        <!--</ul>-->
-
-    </div>
     </div>
 
 
     <div data-role="footer" data-id="foo1" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#homepage">Your Trip</a></li>
-                <li><a href="#bookingList">Bookings</a></li>
-                <li><a href="#tourList" data-theme="b">All Tours</a></li>
-                <li><a href="#account">Account</a></li>
-            </ul>
-        </div><!-- /navbar -->
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#homepage">Your Trip</a></li>
+          <li><a href="#bookingList">Bookings</a></li>
+          <li><a href="#tourList" data-theme="b">All Tours</a></li>
+          <li><a href="#account">Account</a></li>
+        </ul>
+      </div>
+      <!-- /navbar -->
     </div>
-</div>
+  </div>
 
-<div data-role="page" id="account" data-add-back-btn="true">
+  <div data-role="page" id="account" data-add-back-btn="true">
     <div data-role="header">
-        <h1>Account Edit</h1>
-        <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
+      <h1>Account Edit</h1>
+      <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
 
     <div data-role="content">
-        <form action="" method="post">
+      <form action="" method="post">
 
-                <div data-role="fieldcontain">
+        <div data-role="fieldcontain">
 
-                    <label for="EtxfEmail">Email</label>
-                    <input type="text" name="EtxfEmail" id="EtxfEmail" readonly
-                           style="background-color:lightgrey;"/>
-                </div>
+          <label for="EtxfEmail">Email</label>
+          <input type="text" name="EtxfEmail" id="EtxfEmail" readonly style="background-color:lightgrey;" />
+        </div>
 
-                <div data-role="collapsible-set">
+        <div data-role="collapsible-set">
 
-                    <div data-role="collapsible" data-collapsed="true">
-                        <h3>Edit info</h3>
-                    <div data-role="fieldcontain">
-                    <h3>Info</h3>
-                    <label for="EtxfName">Full Name</label>
-                    <input type="text" name="EtxfName" id="EtxfName" data-mini="true"/>
-                    <br/>
+          <div data-role="collapsible" data-collapsed="true">
+            <h3>Edit info</h3>
+            <div data-role="fieldcontain">
+              <h3>Info</h3>
+              <label for="EtxfName">Full Name</label>
+              <input type="text" name="EtxfName" id="EtxfName" data-mini="true" />
+              <br/>
 
-                    <label for="EtxfMiddle">Middle Initial</label>
-                    <input type="text" name="EtxfMiddle" id="EtxfMiddle" data-mini="true"/>
-                    <br/>
+              <label for="EtxfMiddle">Middle Initial</label>
+              <input type="text" name="EtxfMiddle" id="EtxfMiddle" data-mini="true" />
+              <br/>
 
-                    <label for="EtxfLast">Last Name</label>
-                    <input type="text" name="EtxfLast" id="EtxfLast" data-mini="true"/>
-                    </div>
-                    <br/>
+              <label for="EtxfLast">Last Name</label>
+              <input type="text" name="EtxfLast" id="EtxfLast" data-mini="true" />
+            </div>
+            <br/>
 
-                    <div data-role="fieldcontain">
-                    <h3>Address</h3>
-                    <label for="EtxfStreetNo">Street No</label>
-                    <input type="text" name="EtxfStreetNo" id="EtxfStreetNo" data-mini="true"/>
+            <div data-role="fieldcontain">
+              <h3>Address</h3>
+              <label for="EtxfStreetNo">Street No</label>
+              <input type="text" name="EtxfStreetNo" id="EtxfStreetNo" data-mini="true" />
 
-                    <label for="EtxfStreetName">Street Name</label>
-                    <input type="text" name="EtxfStreetName" id="EtxfStreetName" data-mini="true"/>
+              <label for="EtxfStreetName">Street Name</label>
+              <input type="text" name="EtxfStreetName" id="EtxfStreetName" data-mini="true" />
 
-                    <label for="txfSuburb">Suburb</label>
-                    <input type="text" name="EtxfSuburb" id="EtxfSuburb" data-mini="true"/>
+              <label for="txfSuburb">Suburb</label>
+              <input type="text" name="EtxfSuburb" id="EtxfSuburb" data-mini="true" />
 
-                    <label for="EtxfPost">Post Code</label>
-                    <input type="text" name="EtxfPost" id="EtxfPost" data-mini="true"/>
+              <label for="EtxfPost">Post Code</label>
+              <input type="text" name="EtxfPost" id="EtxfPost" data-mini="true" />
 
-                    <label for="EtxfPhone">Phone</label>
-                    <input type="text" name="EtxfPhone" id="EtxfPhone" data-mini="true"/>
+              <label for="EtxfPhone">Phone</label>
+              <input type="text" name="EtxfPhone" id="EtxfPhone" data-mini="true" />
 
-                    </div>
+            </div>
 
-                    <div data-role="fieldcontain">
-                    <a href="" data-role="button" data-theme="a"
-                       id="EbtnSubmit">APPLY CHANGES</a>
-                    </div>
+            <div data-role="fieldcontain">
+              <a href="" data-role="button" data-theme="a" id="EbtnSubmit">APPLY CHANGES</a>
+            </div>
 
-                    </div> <!-- end edit info -->
+          </div>
+          <!-- end edit info -->
 
-                    <div data-role="collapsible" data-collapsed="true">
-                    <h3>Change Password</h3>
-                    <div data-role="fieldcontain">
-                        <label for="EtxfNewPass">New Password</label>
-                        <input type="password" name="EtxfNewPass" id="EtxfNewPass" data-mini="true"/>
-                        <br/>
-                        <label for="EtxfNewPassConfirm">Confirm New Password</label>
-                        <input type="password" name="EtxfNewPassConfirm" id="EtxfNewPassConfirm" data-mini="true"/>
+          <div data-role="collapsible" data-collapsed="true">
+            <h3>Change Password</h3>
+            <div data-role="fieldcontain">
+              <label for="EtxfNewPass">New Password</label>
+              <input type="password" name="EtxfNewPass" id="EtxfNewPass" data-mini="true" />
+              <br/>
+              <label for="EtxfNewPassConfirm">Confirm New Password</label>
+              <input type="password" name="EtxfNewPassConfirm" id="EtxfNewPassConfirm" data-mini="true" />
 
-                        <div data-role="fieldcontain">
-                            <a href="" data-role="button" data-theme="b"
-                               id="EbtnChangePassword">Change Password</a>
-                        </div>
-                    </div>
-                    </div>
+              <div data-role="fieldcontain">
+                <a href="" data-role="button" data-theme="b" id="EbtnChangePassword">Change Password</a>
+              </div>
+            </div>
+          </div>
 
-                </div> <!-- end set-->
+        </div>
+        <!-- end set-->
 
-        </form>
+      </form>
     </div>
 
     <div data-role="footer" data-id="foo2" data-position="fixed">
-        <div data-role="navbar">
-            <ul>
-                <li><a href="#homepage">Your Trip</a></li>
-                <li><a href="#bookingList">Bookings</a></li>
-                <li><a href="#tourList">All Tours</a></li>
-                <li><a href="#account" data-theme="b">Account</a></li>
-            </ul>
-        </div><!-- /navbar -->
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#homepage">Your Trip</a></li>
+          <li><a href="#bookingList">Bookings</a></li>
+          <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#account" data-theme="b">Account</a></li>
+        </ul>
+      </div>
+      <!-- /navbar -->
     </div>
-</div>
+  </div>
 
-<script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-<script src="js/main.js"></script><!--Main js Scripts-->
+  <script type="text/javascript" src="cordova.js"></script>
+  <script type="text/javascript" src="js/index.js"></script>
+  <script src="js/main.js"></script>
+  <!--Main js Scripts-->
 </body>
+
 </html>

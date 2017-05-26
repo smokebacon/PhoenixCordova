@@ -43,7 +43,7 @@ $(document).on("pageinit", function(){
         }); // end homepage live beforepageshow
 
         //Tourlist preload functions
-          $("#tourList").live("pagebeforeshow",function(){
+        $("#tourList").live("pagebeforeshow",function(){
 
               var Auth = localStorage.getItem('Auth');
               console.log("in tourlist preload with user auth : "+Auth);
@@ -63,33 +63,78 @@ $(document).on("pageinit", function(){
                                     alert("Error connecting to Webservice.\nTry again");
                                   });//end Ajax
 
-          });
-        //
-         function populateTour(data) {
-             //TODO this method will populate tour data using html insertion from returned array
+        });
+
+        function populateTour(data) {
              console.log("in populate Tour");
              var str = "";
              for(var i=0;i<data.length;i++){
                  //Header
-                 str += "<ul data-role='listview' data-inset='true' class='card'>";
-
-                 //Tour name on top
-                 str += "<li data-role='list-divider'><h1 id='tour"+i+"header'>"+ data[i].Tour_No + " : " + data[i].Tour_Name +"</h1></li>";
-                 str += "<li>";
-
-                 str += "<div>" +
-                     "<a href='' data-role='button' data-theme='c' id='btnViewIt"+data[i].Tour_No+"'>View Itinerary</a>"+
-                     "<a href='' data-role='button' data-theme='c' id='btnBook"+data[i].Tour_No+"'>Book This Trip</a>"+
-                     "</div>";
-
-                 str += "</li>";
-                 str += "</ul>";
-
-                 // console.log(data[i].Tour_No + " " + data[i].Tour_Name);
+                 str += "<ul data-role='listview' data-inset='true' class='card'>" +
+                     "<li data-role='list-divider'>" +
+                     "<h1 id='tour"+i+"header'>"+ data[i].Tour_No + " : " + data[i].Tour_Name +"</h1>" +
+                     "</li>" +
+                     "<li class='wrap'><h3 align='center'>"+ data[i].Description +"</h3><br/>" +
+                     "<div align='center'>" +
+                     "<a href='' data-role='button' data-inset='true' data-theme='c' data-inline='true' id='btnViewIt"+data[i].Tour_No+"'>View Itinerary</a>"+
+                     "<a href='' data-role='button' data-inset='true' data-theme='b' data-inline='true' id='btnBook"+data[i].Tour_No+"'>Book Now</a>"+
+                     "</div>" +
+                     "</li>" +
+                     "</ul>";
              }
              $("#populateTourData").html(str).trigger("create");
              console.log("End populate tour");
          }
+
+         $("#bookingList").live("pagebeforeshow",function(){
+
+             var Auth = localStorage.getItem('Auth');
+             console.log("in bookingList preload with user auth : "+Auth);
+
+             $.ajax({
+                 type:"GET",
+                 url: rootURL + 'booking/getbookingfromauth',
+                 dataType:"json"})
+                 .done(function(data){
+                     if(data && data.length>0){
+                         populateBooking(data);
+                     }else{
+                         var str = "<h1>No Booking entry</h1><br/><a href='#tourList' data-role='button'" +
+                             " data-theme='b'>Book a tour now</a>";
+                         $("#populateBookingData").html(str).trigger("create");
+                         console.log("no data present");
+                     }
+                 }).fail(function(data){
+                 /* Execute when ajax falls over */
+                 alert("Error connecting to Webservice.\nTry again");
+             });//end Ajax
+
+         });
+
+        function populateBooking(data){
+            console.log("in populate booking");
+            var str = "";
+            var remaining;
+            for(var i=0;i<data.length;i++){
+                remaining = parseFloat(data[i].Amount_Due) - parseFloat(data[i].Deposit_Amount);
+                str += "<ul data-role='listview' data-inset='true' class='card'>" +
+                    "<li data-role='list-divider'>" +
+                    "<h1 id='lblBooking"+data[i].Booking_No+"'>"+data[i].Booking_No + data[i].Tour_Name +"</h1></li><li>"+
+                    "<h3 id='lblBookingNo"+data[i].Booking_No+"' align='center'>"+data[i].Booking_No+"</h3>" +
+                    "<h4 id='lblTripDate"+data[i].Booking_No+"' align='center'>Departure Date : "+ data[i].Departure_Date +"</h4><div>";
+                if(data[i].Deposit_Amount < data[i].Amount_Due){
+                    str +="<a href='' data-role='button' data-theme='b' data-icon='info'" +
+                        " id='bookingStatus"+data[i].Booking_No+"'>Amount due : "+ remaining +"</a>";
+                }else{
+                    str +="<a href='' data-role='button' data-theme='c' id='bookingPending"+data[i].Booking_No+"'>Pending booking, tap to pay</a>";
+                }
+                str += "</div></li></ul>";
+            }
+
+            $("#populateBookingData").html(str).trigger("create");
+            console.log("End populate booking");
+
+        }
 
 		$("#account").live("pagebeforeshow",function(){
             //send Ajax GET request to retrieve all customer data

@@ -113,3 +113,12 @@ h1 {
     animation:fade 3000ms infinite;
     -webkit-animation:fade 3000ms infinite;
 }
+
+p {
+    white-space:normal !important;
+    word-wrap: break-word !important;
+}
+
+.wrap{
+    white-space: normal !important;
+}
