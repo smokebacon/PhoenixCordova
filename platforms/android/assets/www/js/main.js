@@ -43,20 +43,53 @@ $(document).on("pageinit", function(){
         }); // end homepage live beforepageshow
 
         //Tourlist preload functions
-        $("#tourList").live("pagebeforeshow",function(){
+          $("#tourList").live("pagebeforeshow",function(){
 
-            var Auth = localStorage.getItem('Auth');
-            console.log(Auth);
+              var Auth = localStorage.getItem('Auth');
+              console.log("in tourlist preload with user auth : "+Auth);
 
-            $.ajax({
-                type:"GET",
-                beforeSend: function(request){
-                    request.setRequestHeader("Auth",auth);
-                },
-                url: rootUrl + 'booking'
-            })
+              $.ajax({
+                  type:"GET",
+                  url: rootURL + 'tour/all',
+                  dataType:"json"})
+                  .done(function(data){
+                  if(data && data.length>0){
+                      populateTour(data);
+                      }else{
+                      console.log("no data present");
+                      }
+                  }).fail(function(data){
+                                    /* Execute when ajax falls over */
+                                    alert("Error connecting to Webservice.\nTry again");
+                                  });//end Ajax
 
-        });
+          });
+        //
+         function populateTour(data) {
+             //TODO this method will populate tour data using html insertion from returned array
+             console.log("in populate Tour");
+             var str = "";
+             for(var i=0;i<data.length;i++){
+                 //Header
+                 str += "<ul data-role='listview' data-inset='true' class='card'>";
+
+                 //Tour name on top
+                 str += "<li data-role='list-divider'><h1 id='tour"+i+"header'>"+ data[i].Tour_No + " : " + data[i].Tour_Name +"</h1></li>";
+                 str += "<li>";
+
+                 str += "<div>" +
+                     "<a href='' data-role='button' data-theme='c' id='btnViewIt"+data[i].Tour_No+"'>View Itinerary</a>"+
+                     "<a href='' data-role='button' data-theme='c' id='btnBook"+data[i].Tour_No+"'>Book This Trip</a>"+
+                     "</div>";
+
+                 str += "</li>";
+                 str += "</ul>";
+
+                 // console.log(data[i].Tour_No + " " + data[i].Tour_Name);
+             }
+             $("#populateTourData").html(str).trigger("create");
+             console.log("End populate tour");
+         }
 
 		$("#account").live("pagebeforeshow",function(){
             //send Ajax GET request to retrieve all customer data
@@ -76,16 +109,16 @@ $(document).on("pageinit", function(){
               .done(function(data){
               //execute when ajax successfully completes
 //                alert("prefill forms");
-                $("#EtxfID").val(data[0].Customer_Id);
-                $("#EtxfEmail").val(data[0].Email);
-                $("#EtxfName").val(data[0].First_Name);
-                $("#EtxfMiddle").val(data[0].Middle_Initial);
-                $("#EtxfLast").val(data[0].Last_Name);
-                $("#EtxfStreetNo").val(data[0].Street_No);
-                $("#EtxfStreetName").val(data[0].Street_Name);
-                $("#EtxfSuburb").val(data[0].Suburb);
-                $("#EtxfPost").val(data[0].Postcode);
-                $("#EtxfPhone").val(data[0].Phone);
+                $("#EtxfID").val(data.Customer_Id);
+                $("#EtxfEmail").val(data.Email);
+                $("#EtxfName").val(data.First_Name);
+                $("#EtxfMiddle").val(data.Middle_Initial);
+                $("#EtxfLast").val(data.Last_Name);
+                $("#EtxfStreetNo").val(data.Street_No);
+                $("#EtxfStreetName").val(data.Street_Name);
+                $("#EtxfSuburb").val(data.Suburb);
+                $("#EtxfPost").val(data.Postcode);
+                $("#EtxfPhone").val(data.Phone);
               })
               .always(function() {
                })
