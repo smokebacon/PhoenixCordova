@@ -54,14 +54,16 @@
 
     <div data-role="header">
       <h1>Your Trip</h1>
+      <a href="#tourList" class="ui-btn-right" data-theme="c">New booking</a>
       <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
     <div data-role="content">
       <div class="ui-grid-solo">
 
+        <div id="populateBookingData"></div>
 
         <!--TODO comment these items out and populate the list with script later on in development, see driverLicense java code for generation script-->
-        <ul data-role="listview" data-inset="true" class="card">
+        <!-- <ul data-role="listview" data-inset="true" class="card">
 
           <li data-role="list-divider">
             <h1 id="tourHead1">TOUR NAME</h1>
@@ -76,39 +78,7 @@
             </div>
 
           </li>
-        </ul>
-        <ul data-role="listview" data-inset="true" class="card">
-
-          <li data-role="list-divider">
-            <h1 id="tourHead2">TOUR NAME</h1>
-          </li>
-          <li>
-            <div style="padding-right:4px;">
-              <a href="" data-role="button" onclick="viewItinerary2">View Itinerary</a>
-            </div>
-
-            <div style="padding-right:4px;" align="center">
-              <h4 id="tripDate2">Date</h4>
-            </div>
-
-          </li>
-        </ul>
-        <ul data-role="listview" data-inset="true" class="card">
-
-          <li data-role="list-divider">
-            <h1 id="tourHead3">TOUR NAME</h1>
-          </li>
-          <li>
-            <div style="padding-right:4px;">
-              <a href="" data-role="button" onclick="viewItinerary3">View Itinerary</a>
-            </div>
-
-            <div style="padding-right:4px;" align="center">
-              <h4 id="tripDate3">Date</h4>
-            </div>
-
-          </li>
-        </ul>
+        </ul> -->
 
 
         <!--END TODO-->
@@ -120,8 +90,8 @@
       <div data-role="navbar">
         <ul>
           <li><a href="#homepage" data-theme="b">Your Trip</a></li>
-          <li><a href="#bookingList">Bookings</a></li>
           <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#reviewList">Review</a></li>
           <li><a href="#account">Account</a></li>
         </ul>
       </div>
@@ -132,8 +102,8 @@
   </div>
   <!--End homepage-->
 
-  <div data-role="page" id="register" data-add-back-btn="false">
-    <div data-role="header">
+  <div data-role="page" id="register" >
+    <div data-role="header" data-add-back-btn="false">
       <h1>Register</h1>
     </div>
 
@@ -196,15 +166,14 @@
     </div>
   </div>
 
-  <div data-role="page" id="bookingList" data-add-back-btn="true">
+  <div data-role="page" id="reviewList" >
     <div data-role="header">
-      <h1>Booking List</h1>
-      <a href="#tourList" class="ui-btn-right" data-theme="c">New booking</a>
+      <h1>Your Review</h1>
       <!--<a href="#homepage" data-theme="b">Log out</a>-->
     </div>
     <div data-role="content">
 
-      <div id="populateBookingData"></div>
+      <div id="populateReviewData"></div>
 
       <!-- <ul data-role="listview" data-inset="true" class="card">
 
@@ -215,7 +184,7 @@
                 <h3 id="lblBookingNo1" align="center">Trip Booking No</h3>
                 <h4 id="bookingNo1" align="center">AJD12341</h4>
                 <div>
-                    <a href="" data-role="button" data-theme="b" id="bookingStatus1">Pending</a>
+                    <a href="" data-role="button" data-theme="b" id="reviewtatus1">Pending</a>
                 </div>
 
             </li>
@@ -227,8 +196,8 @@
       <div data-role="navbar">
         <ul>
           <li><a href="#homepage">Your Trip</a></li>
-          <li><a href="#bookingList" data-theme="b">Bookings</a></li>
           <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#reviewList" data-theme="b">Review</a></li>
           <li><a href="#account">Account</a></li>
         </ul>
       </div>
@@ -236,20 +205,82 @@
     </div>
   </div>
 
-  <div data-role="page" id="newBooking" data-add-back-btn="true">
-    <div data-role="header">
+  <div data-role="page" id="viewIt" >
+    <div data-role="header" data-add-back-btn="true">
+      <h1>Itinerary</h1>
+    </div>
+    <div data-role="content">
+      <div id="populateItineraryData"></div>
+    </div>
+
+  </div>
+
+  <div data-role="page" id="newBooking" >
+    <div data-role="header" data-add-back-btn="true">
       <h1>Add New Booking</h1>
     </div>
     <div data-role="content">
-      <!--TODO form to put in bookings details here-->
+      <!--TODO form to put in Review details here-->
       <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
 
 
     </div>
   </div>
 
-  <div data-role="page" id="tourList" data-add-back-btn="true">
-    <div data-role="header">
+  <div data-role="page" id="newReview" >
+    <div data-role="header" data-add-back-btn="true">
+      <h1>Add New Review</h1>
+    </div>
+    <div data-role="content">
+      <!--TODO form to put in Review details here-->
+      <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
+
+
+    </div>
+  </div>
+
+
+  <div data-role="page" id="tripList" >
+    <div data-role="header" data-add-back-btn="true">
+      <h1>Trip list</h1>
+      <!--<a href="#homepage" data-theme="b">Log out</a>-->
+    </div>
+    <div data-role="content">
+
+      <div id="populateTripList"></div>
+
+      <!-- <ul data-role="listview" data-inset="true" class="card">
+
+            <li data-role="list-divider">
+                <h1 id="bookingTourHead1">TOUR HEAD 1</h1>
+            </li>
+            <li>
+                <h3 id="lblBookingNo1" align="center">Trip Booking No</h3>
+                <h4 id="bookingNo1" align="center">AJD12341</h4>
+                <div>
+                    <a href="" data-role="button" data-theme="b" id="reviewtatus1">Pending</a>
+                </div>
+
+            </li>
+        </ul> -->
+
+    </div>
+
+    <div data-role="footer" data-id="foo4" data-position="fixed">
+      <div data-role="navbar">
+        <ul>
+          <li><a href="#homepage">Your Trip</a></li>
+          <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#reviewList">Review</a></li>
+          <li><a href="#account">Account</a></li>
+        </ul>
+      </div>
+      <!-- /navbar -->
+    </div>
+  </div>
+
+  <div data-role="page" id="tourList" >
+    <div data-role="header" data-add-back-btn="false">
       <h1>All Tour List</h1>
       <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
     </div>
@@ -258,7 +289,7 @@
       <div data-role="listview" data-inset="true" class="card">
         <li>
           <div align="center">
-              <input type="search" name="search" placeholder="Search Tour" id="txfSearchTour" value="" />
+              <input type="search" name="search" placeholder="Search for Tour Name or Description" id="txfSearchTour" value="" />
               <a href="" data-role="button" data-inset="true" data-theme="b" id="btnSearchTour">Search</a>
           </div>
         </li>
@@ -287,8 +318,8 @@
       <div data-role="navbar">
         <ul>
           <li><a href="#homepage">Your Trip</a></li>
-          <li><a href="#bookingList">Bookings</a></li>
           <li><a href="#tourList" data-theme="b">All Tours</a></li>
+          <li><a href="#reviewList">Review</a></li>
           <li><a href="#account">Account</a></li>
         </ul>
       </div>
@@ -381,8 +412,8 @@
       <div data-role="navbar">
         <ul>
           <li><a href="#homepage">Your Trip</a></li>
-          <li><a href="#bookingList">Bookings</a></li>
           <li><a href="#tourList">All Tours</a></li>
+          <li><a href="#reviewList">Review</a></li>
           <li><a href="#account" data-theme="b">Account</a></li>
         </ul>
       </div>

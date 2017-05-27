@@ -1,0 +1,4 @@
+bug logs
+1 fix the / problem on url ajax call
+2 route redundant
+3 jquery selector cannot recognize object after certain render steps (trigger("create"))
