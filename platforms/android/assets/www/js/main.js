@@ -78,7 +78,6 @@ $(document).on("pageinit", function () {
     function populateTour(data) {
         console.log("in populate Tour");
         var str = "";
-        JSON.stringify(data)
         for (var i = 0; i < data.length; i++) {
             //Header
             // console.log(data[i].Tour_No);
@@ -120,17 +119,17 @@ $(document).on("pageinit", function () {
     /**
      * Search listener to find out any header, description to match with the input field
      */
-    $(function(){
-        $("#btnSearchTour").on("click",function(){
+    $(function () {
+        $("#btnSearchTour").on("click", function () {
             console.log("in btnSearchTour function")
             var g = $("#txfSearchTour").val().toLowerCase();
-            $("ul li h1").each(function() {
+            $("ul li h1").each(function () {
                 var s = $(this).text().toLowerCase();
-                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show':'hide']();
+                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show' : 'hide']();
             });
-            $("ul li h3").each(function() {
+            $("ul li h3").each(function () {
                 var s = $(this).text().toLowerCase();
-                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show':'hide']();
+                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show' : 'hide']();
             });
         });
     });
@@ -139,11 +138,10 @@ $(document).on("pageinit", function () {
      * Show every tour back when users tap the clear button
      */
     $(document).on('click', '.ui-input-clear', function () {
-        $("ul li h1").each(function() {
+        $("ul li h1").each(function () {
             $(this).closest('.card').show();
         })
     });
-
 
 
     $("#homepage").live("pagebeforeshow", function () {
@@ -192,11 +190,11 @@ $(document).on("pageinit", function () {
                 str += "<a data-role='button' data-theme='b' data-icon='info' id='payFor" + data[i].Booking_No + "'>Complete Payment</a>";
             } else {
 
-                if(today <= new Date(data[i].Departure_Date)) {
+                if (today <= new Date(data[i].Departure_Date)) {
                     str += "<h3 style='color: green;' align='center'>Payment confirmed. Don't be late!</h3>";
                     str += "<a class='it' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
                         " data-theme='c'>View Itinerary</a>";
-                }else{
+                } else {
                     str += "<h3 style='color:green;' align='center'>Cheers! That was fun.</h3>";
                     str += "<a class='review' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
                         " data-theme='c'>Write a review</a>";
@@ -209,16 +207,16 @@ $(document).on("pageinit", function () {
         $("#populateBookingData").html(str).trigger("create");
 
         $('#populateBookingData .it').on('click', function () {
-            target = $(this).data('tourno');
+            target = $(this).attr("data-tourno");
             localStorage.setItem('tourno', target);
             jQuery.mobile.changePage('#viewIt', {transition: "fade"});
             console.log("on viewIt class listener");
         });
 
-        $('#populateBookingData .review').on('click',function(){
-            target = $(this).data('tourno');
-            localStorage.setItem('tourno',target);
-            jQuery.mobile.changePage('#newReview',{transition: "fade"});
+        $('#populateBookingData .review').on('click', function () {
+            target = $(this).attr("data-tourno");
+            localStorage.setItem('tourno', target);
+            jQuery.mobile.changePage('#newReview', {transition: "fade"});
             console.log("on review class listener");
         });
 
@@ -302,6 +300,7 @@ $(document).on("pageinit", function () {
         console.log("in populate trip");
         var str = "";
         var remaining;
+        var target;
 
         for (var i = 0; i < data.length; i++) {
 
@@ -309,23 +308,22 @@ $(document).on("pageinit", function () {
 
             str += "<ul data-role='listview' data-inset='true' class='card'>" +
                 "<li data-role='list-divider'>" +
-                "<h1 id='lblTripDate" + data[i].Trip_Id+ "'> Date : " + data[i].Departure_Date + "</h1></li><li>" +
-                "<h3 id='lblStandard" + data[i].Trip_Id + "' align='center'>Adult : $" + data[i].Standard_Amount+ "</h3>" +
-                "<h3 id='lblConcession"+data[i].Trip_Id+"' align='center'>Concession : $" + data[i].Concession_Amount+"</h3>";
-            if(remaining <= 0)
-            {
-                str += "<h1 style='color: red;' id='lblSeats"+data[i].Trip_Id+"' align='center'>No seats left!</h1>" +
+                "<h1 id='lblTripDate" + data[i].Trip_Id + "'> Date : " + data[i].Departure_Date + "</h1></li><li>" +
+                "<h3 id='lblStandard" + data[i].Trip_Id + "' align='center'>Adult : $" + data[i].Standard_Amount + "</h3>" +
+                "<h3 id='lblConcession" + data[i].Trip_Id + "' align='center'>Concession : $" + data[i].Concession_Amount + "</h3>";
+            if (remaining <= 0) {
+                str += "<h1 style='color: red;' id='lblSeats" + data[i].Trip_Id + "' align='center'>No seats left!</h1>" +
                     " <div align='center'>" +
                     "<a href='tel:0484740282' rel='external' data-role='button'" +
                     " data-inline='true'" +
                     " data-inset='true'" +
                     " data-theme='c'>Contact" +
                     " Staff</a>";
-            }else{
+            } else {
                 str += "<p style='text-align: center;' id='lblSeatsRemaining" + data[i].Trip_Id + "' align='center'>" +
                     " Seats available for : " + remaining + " person!</p>" +
-                    "<div align='center'><a data-role='button' data-inset='true' data-theme='b' data-inline='true' " +
-                    "data-tripid='" + data[i].Trip_Id + "' class='btnBookTrip'>Book this trip</a>";
+                    "<div align='center'><a href='#newBooking' data-rel='popup' data-transition='pop' data-role='button' data-inset='true' data-theme='b' data-inline='true'  data-position-to='window'" +
+                    "data-tripid='" + data[i].Trip_Id + "' class='book'>Book this trip</a>";
             }
 
             str += "</div></li></ul>";
@@ -333,9 +331,68 @@ $(document).on("pageinit", function () {
 
         $("#populateTripList").html(str).trigger("create");
 
-        //TODO register dialog to input adult, concessions for the booking
+        $('#populateTripList .book').on('click', function () {
+            target = $(this).attr("data-tripid");
+            localStorage.setItem('tripid', target);
+            console.log("saved tripid data to localstorage");
+
+            populateTripBookingDialog();
+
+
+        });
 
         console.log("End populate booking");
+
+    }
+
+    function populateTripBookingDialog() {
+        console.log("in populateTripbookingDialog");
+        var id = localStorage.getItem('tripid');
+        console.log("id = " + id);
+
+        $.ajax({
+            type: "GET",
+            url: rootURL + 'trip/' + id,
+            dataType: "json"
+        }).done(function (data) {
+            console.log(data);
+            setStr(data);
+        }).fail(function (data) {
+            /* Execute when ajax falls over */
+            alert("Error connecting to Webservice.\nTry again");
+        });//end Ajax
+
+
+    }
+
+    function setStr(data) {
+
+        console.log("in setStr()");
+        var str = "";
+        var remaining = data.Max_Passengers - data.Seats_Taken;
+        var target;
+        var choose;
+
+        $("#seatsRemaining").text(remaining + " Seats left");
+        $("#lblPriceAdult").text(data.Standard_Amount);
+        $("#lblPriceConcession").text(data.Concession_Amount);
+
+        $("#sldAdult,#sldConcession").on('slidestop', function () {
+            var sum = (data.Standard_Amount * $("#sldAdult").val()) + (data.Concession_Amount * $("#sldConcession").val());
+            $("#sumAmount").text("Summary : $ " + sum);
+
+            choose = parseInt($(sldAdult).val()) + parseInt($("#sldConcession").val());
+            console.log(choose);
+
+            if (choose > remaining) {
+                $("#confirmBooking").hide();
+                $("#errorMessage").text("Not enough seats !");
+            } else {
+                $("#errorMessage").text("");
+                $("#confirmBooking").show();
+            }
+
+        });
 
     }
 

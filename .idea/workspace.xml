@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="241" />
-    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="325" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="239" />
+    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="323" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="73294c08-b178-434c-b042-11edf990672e" name="Default" comment="" />
+    <list default="true" id="73294c08-b178-434c-b042-11edf990672e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/buglogs.txt" afterPath="$PROJECT_DIR$/buglogs.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/main.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/main.js" />
+    </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -22,16 +32,16 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="489">
-              <caret line="220" column="72" lean-forward="true" selection-start-line="220" selection-start-column="72" selection-end-line="220" selection-end-column="72" />
+            <state relative-caret-position="586">
+              <caret line="190" column="20" lean-forward="true" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1495892769268" expanded="true" signature="6791:6806" ph="..." />
-                <marker date="1495892769268" expanded="true" signature="7130:7143" ph="..." />
-                <marker date="1495892769268" expanded="true" signature="7427:7439" ph="..." />
-                <marker date="1495892769268" expanded="true" signature="10012:10031" ph="..." />
-                <marker date="1495892769268" expanded="true" signature="12066:12077" ph="..." />
-                <marker date="1495892769268" expanded="true" signature="12501:12520" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="6773:6788" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="7113:7126" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="7412:7424" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="10012:10031" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="12083:12094" ph="..." />
+                <marker date="1495903000805" expanded="true" signature="12524:12543" ph="..." />
               </folding>
             </state>
           </provider>
@@ -48,12 +58,14 @@
       <find>populatebookingdata</find>
       <find>homepage</find>
       <find>bookinglist</find>
-      <find>book now</find>
       <find>Complete Payment</find>
       <find>changepage</find>
       <find>b</find>
       <find>view itinerary</find>
       <find>search tour</find>
+      <find>book now</find>
+      <find>book this</find>
+      <find>JSON.str</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -293,12 +305,12 @@
       <option name="presentableId" value="Default" />
       <updated>1495784009415</updated>
       <workItem from="1495784010633" duration="62000" />
-      <workItem from="1495806541009" duration="36546000" />
+      <workItem from="1495806541009" duration="45950000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36608000" />
+    <option name="totallyTimeSpent" value="46012000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1057" extended-state="0" />
@@ -345,10 +357,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -358,12 +367,12 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1495892769268" expanded="true" signature="6791:6806" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="7130:7143" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="7427:7439" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="10012:10031" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="12066:12077" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="12501:12520" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="6773:6788" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="7113:7126" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="7412:7424" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="10012:10031" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="12083:12094" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="12524:12543" ph="..." />
           </folding>
         </state>
       </provider>
@@ -373,7 +382,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -399,7 +408,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#!!doc" expanded="true" />
+            <element signature="n#!!doc" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -416,25 +425,22 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="104">
           <caret line="7" column="18" lean-forward="false" selection-start-line="7" selection-start-column="18" selection-end-line="7" selection-end-column="18" />
-          <folding>
-            <element signature="n#style#0;n#p#1;n#div#0;n#form#0;n#div#1;n#div#1;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#0;n#form#0;n#div#1;n#div#8;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="489">
-          <caret line="220" column="72" lean-forward="true" selection-start-line="220" selection-start-column="72" selection-end-line="220" selection-end-column="72" />
+        <state relative-caret-position="586">
+          <caret line="190" column="20" lean-forward="true" selection-start-line="190" selection-start-column="20" selection-end-line="190" selection-end-column="20" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1495892769268" expanded="true" signature="6791:6806" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="7130:7143" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="7427:7439" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="10012:10031" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="12066:12077" ph="..." />
-            <marker date="1495892769268" expanded="true" signature="12501:12520" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="6773:6788" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="7113:7126" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="7412:7424" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="10012:10031" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="12083:12094" ph="..." />
+            <marker date="1495903000805" expanded="true" signature="12524:12543" ph="..." />
           </folding>
         </state>
       </provider>

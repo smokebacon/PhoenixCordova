@@ -102,7 +102,7 @@
   </div>
   <!--End homepage-->
 
-  <div data-role="page" id="register" >
+  <div data-role="page" id="register">
     <div data-role="header" data-add-back-btn="false">
       <h1>Register</h1>
     </div>
@@ -166,7 +166,7 @@
     </div>
   </div>
 
-  <div data-role="page" id="reviewList" >
+  <div data-role="page" id="reviewList">
     <div data-role="header">
       <h1>Your Review</h1>
       <!--<a href="#homepage" data-theme="b">Log out</a>-->
@@ -205,7 +205,7 @@
     </div>
   </div>
 
-  <div data-role="page" id="viewIt" >
+  <div data-role="page" id="viewIt">
     <div data-role="header" data-add-back-btn="true">
       <h1>Itinerary</h1>
     </div>
@@ -215,19 +215,7 @@
 
   </div>
 
-  <div data-role="page" id="newBooking" >
-    <div data-role="header" data-add-back-btn="true">
-      <h1>Add New Booking</h1>
-    </div>
-    <div data-role="content">
-      <!--TODO form to put in Review details here-->
-      <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
-
-
-    </div>
-  </div>
-
-  <div data-role="page" id="newReview" >
+  <div data-role="page" id="newReview">
     <div data-role="header" data-add-back-btn="true">
       <h1>Add New Review</h1>
     </div>
@@ -240,7 +228,7 @@
   </div>
 
 
-  <div data-role="page" id="tripList" >
+  <div data-role="page" id="tripList">
     <div data-role="header" data-add-back-btn="true">
       <h1>Trip list</h1>
       <!--<a href="#homepage" data-theme="b">Log out</a>-->
@@ -266,6 +254,25 @@
 
     </div>
 
+    <div data-role="popup" id="newBooking">
+      <div data-role="main" class="ui-content" id="newBookingContent">
+        <form>
+          <div style="padding:0px 40px;">
+            <h3>Seats for this booking</h3>
+            <p style="text-align:center;" id="seatsRemaining"></p>
+            <label for="sldAdult">Adults rate : $ <span id="lblPriceAdult"></span></label>
+            <input type="range" name="slider-fill" id="sldAdult" value="1" min="0" max="10" step="1" data-highlight="true">
+            <label for="sldConcession">Concession rate : $ <span id="lblPriceConcession"></span></label>
+            <input type="range" name="slider-fill" id="sldConcession" value="1" min="0" max="10" step="1" data-highlight="true">
+            <br/>
+            <h1 id="sumAmount"></h1>
+            <p style="text-align:center;" id="errorMessage"></p>
+            <button type="submit" id="confirmBooking" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Confirm</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
     <div data-role="footer" data-id="foo4" data-position="fixed">
       <div data-role="navbar">
         <ul>
@@ -279,7 +286,7 @@
     </div>
   </div>
 
-  <div data-role="page" id="tourList" >
+  <div data-role="page" id="tourList">
     <div data-role="header" data-add-back-btn="false">
       <h1>All Tour List</h1>
       <!--<a href="#homepage" data-theme="b" name="logout">Log out</a>-->
@@ -289,8 +296,8 @@
       <div data-role="listview" data-inset="true" class="card">
         <li>
           <div align="center">
-              <input type="search" name="search" placeholder="Search for Tour Name or Description" id="txfSearchTour" value="" />
-              <a href="" data-role="button" data-inset="true" data-theme="b" id="btnSearchTour">Search</a>
+            <input type="search" name="search" placeholder="Search for Tour Name or Description" id="txfSearchTour" value="" />
+            <a href="" data-role="button" data-inset="true" data-theme="b" id="btnSearchTour">Search</a>
           </div>
         </li>
       </div>
