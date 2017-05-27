@@ -169,6 +169,7 @@
   <div data-role="page" id="reviewList">
     <div data-role="header">
       <h1>Your Review</h1>
+      <a href="#homepage" class="ui-btn-right" data-theme="c">New Review</a>
       <!--<a href="#homepage" data-theme="b">Log out</a>-->
     </div>
     <div data-role="content">
@@ -222,6 +223,37 @@
     <div data-role="content">
       <!--TODO form to put in Review details here-->
       <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
+      <div data-role="fieldcontain">
+        <h1 id="lblReviewForTour">Tour Name</h1>
+        <div align="center">
+          <h2 id="lblReviewTripDate">Departure_Date</h2>
+          <h3>Rating</h3>
+        <fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+          <legend>(1=lowest , 5=highest)</legend>
+          <br/>
+          <input type="radio" name="radio-choice-b" id="oneStar" value="1">
+          <label for="oneStar">1</label>
+          <input type="radio" name="radio-choice-b" id="twoStar" value="2">
+          <label for="twoStar">2</label>
+          <input type="radio" name="radio-choice-b" id="threeStar" value="3"  checked="checked">
+          <label for="threeStar">3</label>
+          <input type="radio" name="radio-choice-b" id="fourStar" value="4">
+          <label for="fourStar">4</label>
+          <input type="radio" name="radio-choice-b" id="fiveStar" value="5">
+          <label for="fiveStar">5</label>
+        </fieldset>
+        </div>
+        <br/>
+        <label for="txaGeneral">General feedback:</label>
+        <textarea cols="40" rows="12" name="textarea" id="txaGeneral"></textarea>
+        <label for="txaLikes">likes:</label>
+        <textarea cols="40" rows="5" name="textarea" id="txaLikes"></textarea>
+        <label for="txaDislikes">Dislikes:</label>
+        <textarea cols="40" rows="5" name="textarea" id="txaDislikes"></textarea>
+      </div>
+      <div data-role="fieldcontain">
+        <a data-role="button" data-theme="a" id="btnSubmitReview">Submit Review</a>
+      </div>
 
 
     </div>
@@ -256,8 +288,7 @@
 
     <div data-role="popup" id="newBooking">
       <div data-role="main" class="ui-content" id="newBookingContent">
-        <form>
-          <div style="padding:0px 40px;">
+          <div style="padding:15px 40px;">
             <h3>Seats for this booking</h3>
             <p style="text-align:center;" id="seatsRemaining"></p>
             <label for="sldAdult">Adults rate : $ <span id="lblPriceAdult"></span></label>
@@ -267,9 +298,8 @@
             <br/>
             <h1 id="sumAmount"></h1>
             <p style="text-align:center;" id="errorMessage"></p>
-            <button type="submit" id="confirmBooking" class="ui-btn ui-corner-all ui-shadow ui-btn-b ui-btn-icon-left ui-icon-check">Confirm</button>
+            <div id="btnConfirmBooking"></div>
           </div>
-        </form>
       </div>
     </div>
 

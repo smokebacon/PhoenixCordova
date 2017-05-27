@@ -43,9 +43,9 @@ $(document).on("pageinit", function () {
 
         if (localStorage.getItem('Auth') === null) {
             console.log("No users found, please register");
-            jQuery.mobile.changePage('#register', {transition: "none"});
+            jQuery.mobile.changePage('#register', {transition: "fade"});
         } else {
-            jQuery.mobile.changePage('#homepage', {transition: "none"});
+            jQuery.mobile.changePage('#homepage', {transition: "fade"});
         }
 
     }); // end homepage live beforepageshow
@@ -97,7 +97,7 @@ $(document).on("pageinit", function () {
         }
         $("#populateTourData").html(str).trigger("create");
 
-        $('#populateTourData .it').on('click', function () {
+        $("#populateTourData .it").on('click', function () {
             target = $(this).attr("data-tourno");
             console.log("setting tourno localstorage" + target);
             localStorage.setItem('tourno', target);
@@ -105,7 +105,7 @@ $(document).on("pageinit", function () {
             console.log("leaving viewIt class listener");
         });
 
-        $('#populateTourData .btnShowTrip').on('click', function () {
+        $("#populateTourData .btnShowTrip").on('click', function () {
             target = $(this).attr("data-tourno");
             console.log("setting tourno localstorage" + target);
             localStorage.setItem('tourno', target);
@@ -115,6 +115,62 @@ $(document).on("pageinit", function () {
 
         console.log("End populate tour");
     }
+
+    //Tourlist preload functions
+    $("#reviewList").live("pagebeforeshow", function () {
+
+        var Auth = localStorage.getItem('Auth');
+        console.log("in reviewList preload with user auth : " + Auth);
+
+        $.ajax({
+            type: "GET",
+            url: rootURL + 'review/all',
+            dataType: "json"
+        })
+            .done(function (data) {
+                if (data && data.length > 0) {
+                    populateReview(data);
+                } else {
+                    console.log("no data present");
+                }
+            }).fail(function (data) {
+            /* Execute when ajax falls over */
+            alert("Error connecting to Webservice.\nTry again");
+        });//end Ajax
+
+    });
+
+    function populateReview(data) {
+        console.log("in populate Review");
+        var str = "";
+        for (var i = 0; i < data.length; i++) {
+            //Header
+            // console.log(data[i].Tour_No);
+            str += "<ul data-role='listview' data-inset='true' class='card'>" +
+                "<li data-role='list-divider'>" +
+                "<h1 id='lblreview" + i + "'>" + data[i].Tour_Name + "</h1>" +
+                "</li>" +
+                "<li class='wrap'><h3 align='center'>Trip Date: " + data[i].Departure_Date + "</h3>" +
+                "<h3 align='center'>Rating : "+data[i].Rating+"</h3>" +
+                "<div align='center'>" +
+                "<a class='review' data-tourno='" + data[i].Tour_No + "' data-tripid='" + data[i].Trip_Id + "'" +
+                " data-role='button' data-theme='c'>Write a review</a>" +
+                "</div>" +
+                "</li>" +
+                "</ul>";
+        }
+
+        $("#populateReviewData").html(str).trigger("create");
+
+        $('#populateReviewData .review').on('click', function () {
+            target = $(this).attr("data-tripid");
+            localStorage.setItem('tripid', target);
+            jQuery.mobile.changePage('#newReview', {transition: "fade"});
+            console.log("on review class listener trip no : " + target);
+        });
+    }
+
+
 
     /**
      * Search listener to find out any header, description to match with the input field
@@ -155,7 +211,7 @@ $(document).on("pageinit", function () {
             dataType: "json"
         }).done(function (data) {
             if (data && data.length > 0) {
-                console.log("in populate data");
+                console.log("in populate sending ajax, some data exists");
                 populateBooking(data);
             } else {
                 var str = "<h1>No Booking entry</h1><br/><a href='#tourList' data-role='button'" +
@@ -171,7 +227,7 @@ $(document).on("pageinit", function () {
     });
 
     function populateBooking(data) {
-        console.log("in populate booking");
+        console.log("in populate data");
         var str = "";
         var remaining;
 
@@ -186,8 +242,9 @@ $(document).on("pageinit", function () {
                 "<h4 id='lblTripDate" + data[i].Booking_No + "' align='center'>Departure Date : " + data[i].Departure_Date + "</h4><div>";
             if (data[i].Deposit_Amount < data[i].Amount_Due) {
                 remaining = data[i].Amount_Due - data[i].Deposit_Amount;
-                str += "<h1 style='color: darkred;'>Amount due to complete booking : " + remaining + "</h1>";
-                str += "<a data-role='button' data-theme='b' data-icon='info' id='payFor" + data[i].Booking_No + "'>Complete Payment</a>";
+                str += "<h1 style='color: darkred;'>Payment due : " + remaining + "</h1>";
+                str += "<a data-role='button' data-theme='c' id='payFor" + data[i].Booking_No + "'>Complete" +
+                    " Payment</a>";
             } else {
 
                 if (today <= new Date(data[i].Departure_Date)) {
@@ -196,8 +253,7 @@ $(document).on("pageinit", function () {
                         " data-theme='c'>View Itinerary</a>";
                 } else {
                     str += "<h3 style='color:green;' align='center'>Cheers! That was fun.</h3>";
-                    str += "<a class='review' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
-                        " data-theme='c'>Write a review</a>";
+                    str += "<a class='review' data-tourno='" + data[i].Tour_No + "' data-tripid='"+data[i].Trip_Id+"' data-role='button' data-theme='b'>Write a review</a>";
                 }
 
             }
@@ -206,18 +262,18 @@ $(document).on("pageinit", function () {
 
         $("#populateBookingData").html(str).trigger("create");
 
-        $('#populateBookingData .it').on('click', function () {
+        $('#populateBookingData .it').off('click').on('click', function () {
             target = $(this).attr("data-tourno");
             localStorage.setItem('tourno', target);
             jQuery.mobile.changePage('#viewIt', {transition: "fade"});
             console.log("on viewIt class listener");
         });
 
-        $('#populateBookingData .review').on('click', function () {
-            target = $(this).attr("data-tourno");
-            localStorage.setItem('tourno', target);
+        $('#populateBookingData .review').off('click').on('click', function () {
+            target = $(this).attr("data-tripid");
+            localStorage.setItem('tripid', target);
             jQuery.mobile.changePage('#newReview', {transition: "fade"});
-            console.log("on review class listener");
+            console.log("on review class listener trip no : " + target);
         });
 
         console.log("End populate booking");
@@ -269,6 +325,134 @@ $(document).on("pageinit", function () {
         console.log("End populate booking");
 
     }
+
+    $("#newReview").live("pagebeforeshow",function() {
+        target = localStorage.getItem('tripid');
+        console.log("getting tripid from localstorage = " + target);
+        $.ajax({
+            type: "GET",
+            url: rootURL + 'trip/' + target,
+            dataType: "json"
+        }).done(function (data) {
+            console.log(data);
+            setReviewStr(data);
+        }).fail(function (data) {
+            /* Execute when ajax falls over */
+            alert("Error connecting to Webservice.\nTry again");
+        })//end Ajax
+
+    })
+
+    function setReviewStr(data) {
+
+        console.log("in setReviewStr()");
+        console.log(data.Trip_Id);
+        var str = "";
+
+        $("#lblReviewForTour").text(data.Tour_Name);
+        $("#lblReviewTripDate").text(data.Departure_Date);
+
+        console.log("getting previous review record = " + data.Trip_Id);
+        console.log(rootURL+'review/');
+        $.ajax({
+            type: "GET",
+            url: rootURL + 'review/',
+            dataType: "json"
+        }).done(function (data) {
+            console.log("found previous review entry,moving to editReviewStr() "+data);
+            editReviewStr(data);
+        }).fail(function (data) {
+            /* Execute when ajax falls over */
+            console.log("Cannot find previous review data, using create page as is");
+            addReviewStr();
+        })//end Ajax
+
+
+
+    }
+
+    function editReviewStr(data){
+        console.log("in editReviewStr()");
+        var str="";
+
+        $("#txaGeneral").val(data.General_Feedback);
+        $("#txaLikes").val(data.Likes);
+        $("#txaDislikes").val(data.Dislikes);
+
+        $("#btnSubmitReview").off('click').on('click',function(){
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + 'customer/review/edit/'+localStorage.getItem('tripid'),
+                dataType: 'json',
+                data: editReviewJSON(),
+            }).done(function (data) {
+                console.log('account updated successfully');
+                console.log(data);
+                jQuery.mobile.changePage('#homepage', {transition: "fade"});
+            }).fail(function (data) {
+                alert("Edit failed");
+            });
+
+            function editReviewJSON() {
+
+                var radioValue = $("input[name='radio-choice-b']:checked").val();
+                var feedback = $("#txaGeneral").val();
+                var likes = $("#txaLikes").val();
+                var dislikes = $("#txaDislikes").val();
+
+                return JSON.stringify({
+                    "Rating": radioValue,
+                    "General_Feedback": feedback,
+                    "Likes": likes,
+                    "Dislikes": dislikes
+                });
+
+            }
+        })
+
+    }
+
+    function addReviewStr(){
+        $("#txaGeneral").val();
+        $("#txaLikes").val();
+        $("#txaDislikes").val();
+
+        $("#btnSubmitReview").off('click').on('click',function(){
+
+            var radioValue = $("input[name='radio-choice-b']:checked").val();
+            var feedback = $("#txaGeneral").val();
+            var likes = $("#txaLikes").val();
+            var dislikes = $("#txaDislikes").val();
+
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + 'customer/review/',
+                dataType: 'json',
+                data: newReviewJSON(),
+            }).done(function (data) {
+                console.log('account updated successfully');
+                console.log(data);
+                jQuery.mobile.changePage('#homepage', {transition: "fade"});
+            }).fail(function (data) {
+                alert("registration failed");
+            });
+
+            function newReviewJSON() {
+                return JSON.stringify({
+                    "Trip_Id": localStorage.getItem('tripid'),
+                    "Rating": radioValue,
+                    "General_Feedback": feedback,
+                    "Likes": likes,
+                    "Dislikes": dislikes
+                });
+
+            }
+
+        })
+    }
+
 
     $("#tripList").live("pagebeforeshow", function () {
         target = localStorage.getItem('tourno');
@@ -323,7 +507,7 @@ $(document).on("pageinit", function () {
                 str += "<p style='text-align: center;' id='lblSeatsRemaining" + data[i].Trip_Id + "' align='center'>" +
                     " Seats available for : " + remaining + " person!</p>" +
                     "<div align='center'><a href='#newBooking' data-rel='popup' data-transition='pop' data-role='button' data-inset='true' data-theme='b' data-inline='true'  data-position-to='window'" +
-                    "data-tripid='" + data[i].Trip_Id + "' class='book'>Book this trip</a>";
+                    " data-tripid='" + data[i].Trip_Id + "' class='book'>Book this trip</a>";
             }
 
             str += "</div></li></ul>";
@@ -331,17 +515,12 @@ $(document).on("pageinit", function () {
 
         $("#populateTripList").html(str).trigger("create");
 
-        $('#populateTripList .book').on('click', function () {
+        $("#populateTripList .book").on('click', function () {
             target = $(this).attr("data-tripid");
             localStorage.setItem('tripid', target);
             console.log("saved tripid data to localstorage");
-
             populateTripBookingDialog();
-
-
         });
-
-        console.log("End populate booking");
 
     }
 
@@ -376,25 +555,61 @@ $(document).on("pageinit", function () {
         $("#seatsRemaining").text(remaining + " Seats left");
         $("#lblPriceAdult").text(data.Standard_Amount);
         $("#lblPriceConcession").text(data.Concession_Amount);
+        str = "<button id='btnConfirmBooking' data-tripid='"+data.Trip_Id+"' class='confirmbook' data-role='button' data-theme='c' >Confirm</button>";
+
+        $("#btnConfirmBooking").html(str).trigger("create");
 
         $("#sldAdult,#sldConcession").on('slidestop', function () {
             var sum = (data.Standard_Amount * $("#sldAdult").val()) + (data.Concession_Amount * $("#sldConcession").val());
+
             $("#sumAmount").text("Summary : $ " + sum);
 
-            choose = parseInt($(sldAdult).val()) + parseInt($("#sldConcession").val());
+            choose = parseInt($("#sldAdult").val()) + parseInt($("#sldConcession").val());
             console.log(choose);
 
             if (choose > remaining) {
-                $("#confirmBooking").hide();
+                str ="";
+                $("#btnConfirmBooking").html(str).trigger("create");
+                // $("button .confirmbook").hide();
                 $("#errorMessage").text("Not enough seats !");
             } else {
+                str = "<button id='btnConfirmBooking' data-tripid='"+data.Trip_Id+"' class='confirmbook' data-role='button' data-theme='c' >Confirm</button>";
+
+                $("#btnConfirmBooking").html(str).trigger("create");
                 $("#errorMessage").text("");
-                $("#confirmBooking").show();
             }
 
         });
 
     }
+
+
+    $("#btnConfirmBooking").on('click',function(){
+        var tripid = localStorage.getItem('tripid');
+        console.log(bookJSON());
+
+        $.ajax({
+            type: "POST",
+            contentType: 'application/json',
+            url: rootURL + 'customer/book/',
+            dataType: 'json',
+            data: bookJSON()
+        }).done(function (data) {
+            console.log("done!");
+            jQuery.mobile.changePage('#homepage', {transition: "fade"});
+
+        }).fail(function (data) {
+            alert("registration failed");
+        });
+
+        function bookJSON() {
+            return JSON.stringify({
+                "Trip_Id": tripid,
+                "Num_Concessions":$("#sldConcession").val(),
+                "Num_Adults":$("#sldAdult").val()
+            });
+        }
+    })
 
 
     $("#account").live("pagebeforeshow", function () {
@@ -450,7 +665,7 @@ $(document).on("pageinit", function () {
         }).done(function (data) {
             console.log('account updated successfully');
             console.log(editJSON().toString());
-            jQuery.mobile.changePage('#homepage', {transition: "none"});
+            jQuery.mobile.changePage('#homepage', {transition: "fade"});
         }).fail(function (data) {
             alert("registration failed");
         });
@@ -491,7 +706,7 @@ $(document).on("pageinit", function () {
                 //set new auth as a localstorage data
                 localStorage.setItem('Auth', data.Auth);
                 //redirect back to the main page
-                jQuery.mobile.changePage('#homepage', {transition: "none"});
+                jQuery.mobile.changePage('#homepage', {transition: "fade"});
             }).fail(function (data) {
                 alert("password change: server failed");
             }); //end Ajax
@@ -530,7 +745,7 @@ $(document).on("pageinit", function () {
 
                 console.log("Auth generated! : " + localStorage.getItem('Auth'));
 
-                jQuery.mobile.changePage('#homepage', {transition: "none"});
+                jQuery.mobile.changePage('#homepage', {transition: "fade"});
 
             }).fail(function (data) {
                 alert("registration failed");
