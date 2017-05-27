@@ -117,6 +117,35 @@ $(document).on("pageinit", function () {
         console.log("End populate tour");
     }
 
+    /**
+     * Search listener to find out any header, description to match with the input field
+     */
+    $(function(){
+        $("#btnSearchTour").on("click",function(){
+            console.log("in btnSearchTour function")
+            var g = $("#txfSearchTour").val().toLowerCase();
+            $("ul li h1").each(function() {
+                var s = $(this).text().toLowerCase();
+                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show':'hide']();
+            });
+            $("ul li h3").each(function() {
+                var s = $(this).text().toLowerCase();
+                $(this).closest('.card')[s.indexOf(g) !== -1 ? 'show':'hide']();
+            });
+        });
+    });
+
+    /**
+     * Show every tour back when users tap the clear button
+     */
+    $(document).on('click', '.ui-input-clear', function () {
+        $("ul li h1").each(function() {
+            $(this).closest('.card').show();
+        })
+    });
+
+
+
     $("#homepage").live("pagebeforeshow", function () {
 
         var Auth = localStorage.getItem('Auth');
