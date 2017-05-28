@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="214" />
-    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="559" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js" line="628" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="73294c08-b178-434c-b042-11edf990672e" name="Default" comment="">
@@ -10,6 +9,7 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/fileSnapshots.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.bin" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" afterPath="$PROJECT_DIR$/platforms/android/.gradle/3.3/taskArtifacts/taskArtifacts.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/platforms/android/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/index.html" afterPath="$PROJECT_DIR$/platforms/android/assets/www/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/platforms/android/assets/www/js/main.js" afterPath="$PROJECT_DIR$/platforms/android/assets/www/js/main.js" />
@@ -30,16 +30,13 @@
       <file leaf-file-name="main.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="538">
-              <caret line="258" column="13" lean-forward="true" selection-start-line="258" selection-start-column="13" selection-end-line="258" selection-end-column="13" />
+            <state relative-caret-position="544">
+              <caret line="106" column="60" lean-forward="true" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <marker date="1495916829395" expanded="true" signature="8877:8892" ph="..." />
-                <marker date="1495916829395" expanded="true" signature="9206:9219" ph="..." />
-                <marker date="1495916829395" expanded="true" signature="9505:9517" ph="..." />
-                <marker date="1495916829395" expanded="true" signature="12156:12175" ph="..." />
-                <marker date="1495916829395" expanded="true" signature="18379:18390" ph="..." />
-                <marker date="1495916829395" expanded="true" signature="18820:18839" ph="..." />
+                <marker date="1495922860023" expanded="true" signature="14687:14706" ph="..." />
+                <marker date="1495922860023" expanded="true" signature="20910:20921" ph="..." />
+                <marker date="1495922860023" expanded="true" signature="21351:21370" ph="..." />
               </folding>
             </state>
           </provider>
@@ -49,15 +46,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>populatebookingdata</find>
-      <find>homepage</find>
-      <find>bookinglist</find>
-      <find>Complete Payment</find>
-      <find>changepage</find>
-      <find>b</find>
-      <find>view itinerary</find>
-      <find>search tour</find>
-      <find>book now</find>
       <find>book this</find>
       <find>JSON.str</find>
       <find>y</find>
@@ -79,6 +67,15 @@
       <find>confirmBooking</find>
       <find>booki</find>
       <find>book</find>
+      <find>btnsubmit</find>
+      <find>$(&quot;#home</find>
+      <find>homepage</find>
+      <find>Homepage</find>
+      <find>btnRegister</find>
+      <find>'#homepage</find>
+      <find>register</find>
+      <find>btnRe</find>
+      <find>#homepage</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -318,12 +315,12 @@
       <option name="presentableId" value="Default" />
       <updated>1495784009415</updated>
       <workItem from="1495784010633" duration="62000" />
-      <workItem from="1495806541009" duration="59497000" />
+      <workItem from="1495806541009" duration="65246000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="59559000" />
+    <option name="totallyTimeSpent" value="65308000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="0" width="974" height="1057" extended-state="0" />
@@ -380,12 +377,9 @@
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1495916829395" expanded="true" signature="8877:8892" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="9206:9219" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="9505:9517" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="12156:12175" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="18379:18390" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="18820:18839" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="14687:14706" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="20910:20921" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="21351:21370" ph="..." />
           </folding>
         </state>
       </provider>
@@ -444,16 +438,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/platforms/android/assets/www/js/main.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="538">
-          <caret line="258" column="13" lean-forward="true" selection-start-line="258" selection-start-column="13" selection-end-line="258" selection-end-column="13" />
+        <state relative-caret-position="544">
+          <caret line="106" column="60" lean-forward="true" selection-start-line="106" selection-start-column="60" selection-end-line="106" selection-end-column="60" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <marker date="1495916829395" expanded="true" signature="8877:8892" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="9206:9219" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="9505:9517" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="12156:12175" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="18379:18390" ph="..." />
-            <marker date="1495916829395" expanded="true" signature="18820:18839" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="14687:14706" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="20910:20921" ph="..." />
+            <marker date="1495922860023" expanded="true" signature="21351:21370" ph="..." />
           </folding>
         </state>
       </provider>

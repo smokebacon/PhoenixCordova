@@ -108,25 +108,25 @@
     </div>
 
     <div data-role="content">
-      <form action="" method="post">
+      <form action="" method="post" id="registerForm">
 
         <div data-role="fieldcontain">
 
-          <label for="txfEmail">Email (or username)</label>
-          <input type="text" name="txfEmail" id="txfEmail" />
+          <label for="txfEmail">Email (or username)*</label>
+          <input type="text" name="txfEmail" id="txfEmail" required/>
           <p>Will be used as a username</p>
           <br/>
 
-          <label for="txfPassword">Password</label>
-          <input type="Password" name="txfPassword" id="txfPassword" />
+          <label for="txfPassword">Password*</label>
+          <input type="Password" name="txfPassword" id="txfPassword" required/>
           <br/>
-          <input type="Password" name="txfConfirmPassword" id="txfConfirmPassword" />
+          <input type="Password" name="txfConfirmPassword" id="txfConfirmPassword" required/>
           <p style="font-size:0.8em;">8-16 characters, no symbols</p>
 
           <br/>
 
-          <label for="txfName">Full Name</label>
-          <input type="text" name="txfName" id="txfName" data-mini="true" />
+          <label for="txfName">Full Name*</label>
+          <input type="text" name="txfName" id="txfName" data-mini="true" required/>
           <br/>
 
           <label for="txfMiddle">Middle Initial</label>
@@ -157,12 +157,11 @@
 
         </div>
 
-        <div data-role="fieldcontain">
-          <a data-role="button" data-theme="a" id="btnRegister">REGISTER</a>
-          <a href="#homepage" data-role="button" data-theme="a" id="btnCancel">CANCEL</a>
-        </div>
-
       </form>
+
+      <div data-role="fieldcontain">
+        <a data-role="button" data-theme="a" id="btnRegister">REGISTER</a>
+      </div>
     </div>
   </div>
 
@@ -221,8 +220,6 @@
       <h1>Add New Review</h1>
     </div>
     <div data-role="content">
-      <!--TODO form to put in Review details here-->
-      <!--TODO send the information using authkey as headers and retrieve it in slim using getheader method-->
       <div data-role="fieldcontain">
         <h1 id="lblReviewForTour">Tour Name</h1>
         <div align="center">
@@ -371,12 +368,12 @@
     </div>
 
     <div data-role="content">
-      <form action="" method="post">
+      <form action="" method="post" id="editForm">
 
         <div data-role="fieldcontain">
 
           <label for="EtxfEmail">Email</label>
-          <input type="text" name="EtxfEmail" id="EtxfEmail" readonly style="background-color:lightgrey;" />
+          <input type="text" name="EtxfEmail" id="EtxfEmail" readonly style="background-color:lightgrey;" required/>
         </div>
 
         <div data-role="collapsible-set">
@@ -385,8 +382,8 @@
             <h3>Edit info</h3>
             <div data-role="fieldcontain">
               <h3>Info</h3>
-              <label for="EtxfName">Full Name</label>
-              <input type="text" name="EtxfName" id="EtxfName" data-mini="true" />
+              <label for="EtxfName">Full Name*</label>
+              <input type="text" name="EtxfName" id="EtxfName" data-mini="true" required/>
               <br/>
 
               <label for="EtxfMiddle">Middle Initial</label>
@@ -410,10 +407,10 @@
               <input type="text" name="EtxfSuburb" id="EtxfSuburb" data-mini="true" />
 
               <label for="EtxfPost">Post Code</label>
-              <input type="text" name="EtxfPost" id="EtxfPost" data-mini="true" />
+              <input type="number" name="EtxfPost" id="EtxfPost" data-mini="true" />
 
               <label for="EtxfPhone">Phone</label>
-              <input type="text" name="EtxfPhone" id="EtxfPhone" data-mini="true" />
+              <input type="number" name="EtxfPhone" id="EtxfPhone" data-mini="true" />
 
             </div>
 
@@ -460,6 +457,7 @@
 
   <script type="text/javascript" src="cordova.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
+  <script src="js/jquery.validate.min.js"></script>
   <script src="js/main.js"></script>
   <!--Main js Scripts-->
 </body>
