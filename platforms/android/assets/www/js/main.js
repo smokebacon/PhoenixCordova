@@ -58,7 +58,8 @@ $(document).one("pageinit", function () {
                 }
             }).fail(function (data) {
                 /* Execute when ajax falls over */
-                alert("Homepage Exception Thrown");
+                // alert("Homepage Exception Thrown");
+                console.log("Homepage Exception thrown : duplicate function callback");
             });//end Ajax
         }
 
@@ -77,6 +78,7 @@ $(document).one("pageinit", function () {
         var pass = $("#txfPassword").val();
         var pass2 = $("#txfConfirmPassword").val();
 
+        //Validation script
         if(name === "" || name < 4){
             validator = false;
             alert("Please input a valid name, more than 4 characters long");
@@ -98,7 +100,7 @@ $(document).one("pageinit", function () {
                 $.ajax({
                     type: "POST",
                     contentType: 'application/json',
-                    url: rootURL + 'customer/add',
+                    url: rootURL + 'customer/add/',
                     dataType: 'JSON',
                     data: registerJSON()
                 }).done(function (data) {
