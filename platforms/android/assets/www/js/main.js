@@ -12,7 +12,7 @@ var pageinited = false;
 
 
 /////////////////////////////////////////jquery On Document Ready
-$(document).on("pageinit", function () {
+$(document).one("pageinit", function () {
 
     var rootURL = "http://10.0.2.2/sites/PhoenixSlim/";
 
@@ -24,31 +24,185 @@ $(document).on("pageinit", function () {
     var Email = localStorage.getItem('Email');
     var target;
 
-    $.ajaxSetup({
-        headers: {'Auth': value}
-    });
-
-    //TODO separated Account info, Password page
-
-    // Billk added code
-    if (pageinited) {
-        return;
-    } else {
-        pageinited = true;
-    }
-    // end added code
-
     // Homepage Event Handlers
-    $("#homepage").live("pagebeforeshow", function () {
+    $("#homepage").on("pagebeforeshow", function () {
 
-        if (localStorage.getItem('Auth') === null) {
+        if (localStorage.getItem('Auth') == null){
             console.log("No users found, please register");
             jQuery.mobile.changePage('#register', {transition: "fade"});
         } else {
+
+            $.ajaxSetup({
+                    headers: {'Auth': value}
+                });
+
             jQuery.mobile.changePage('#homepage', {transition: "fade"});
+
+            var Auth = localStorage.getItem('Auth');
+
+            console.log("in homepage preload with user auth : " + Auth);
+
+            $.ajax({
+                type: "GET",
+                url: rootURL + 'booking/getbookingfromauth/',
+                dataType: "json"
+            }).done(function (data) {
+                if (data && data.length > 0) {
+                    console.log("in populate sending ajax, some data exists");
+                    populateBooking(data);
+                } else {
+                    var str = "<h1>No Booking entry</h1><br/><a href='#tourList' data-role='button'" +
+                        " data-theme='b'>Book a tour now</a>";
+                    $("#populateBookingData").html(str).trigger("create");
+                    console.log("no data present");
+                }
+            }).fail(function (data) {
+                /* Execute when ajax falls over */
+                // alert("Homepage Exception Thrown");
+                console.log("Homepage Exception thrown : duplicate function callback");
+            });//end Ajax
         }
 
+
+
+
     }); // end homepage live beforepageshow
+
+    $("#btnRegister").on("click", function (e) {
+        e.stopImmediatePropagation();
+
+        var validator = true;
+        var name = $("#txfName").val();
+        var mid = $("#txfMiddle").val();
+        var email = $("#txfEmail").val();
+        var pass = $("#txfPassword").val();
+        var pass2 = $("#txfConfirmPassword").val();
+
+        //Validation script
+        if(name === "" || name < 4){
+            validator = false;
+            alert("Please input a valid name, more than 4 characters long");
+            $("#txfName").focus();
+        }else if(mid.length >1) {
+            validator = false;
+            alert("Middle name can have only 1 characters");
+            $("#txfMiddle").focus();
+        }else if(pass === "" || pass2 === "" || pass !== pass2) {
+            validator = false;
+            alert("Password confirmation is wrong, please recheck");
+        }else if(email === "" || email.length < 4) {
+            validator = false;
+            alert("Email is incorrect, please recheck");
+        }else{
+
+            console.log('submit clicked');
+
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: rootURL + 'customer/add/',
+                    dataType: 'JSON',
+                    data: registerJSON()
+                }).done(function (data) {
+                    console.log("Ajax post is done");
+
+                    localStorage.setItem('Auth', data.Auth);
+                    console.log("Writing auth" + data.Auth);
+                    console.log("Auth generated! : " + localStorage.getItem('Auth'));
+
+                    jQuery.mobile.changePage('#homepage', {transition: "fade"});
+
+                }).fail(function (data) {
+                    alert("registration failed");
+                });
+        }
+
+    });
+
+    function registerJSON() {
+        return JSON.stringify({
+            "First_Name": $('#txfName').val(),
+            "Middle_Initial": $('#txfMiddle').val(),
+            "Last_Name": $('#txfLast').val(),
+            "Street_No": $('#txfStreetNo').val(),
+            "Street_Name": $('#txfStreetName').val(),
+            "Suburb": $('#txfSuburb').val(),
+            "Postcode": $('#txfPost').val(),
+            "Email": $('#txfEmail').val(),
+            "Phone": $('#txfPhone').val(),
+            "Password": $('#txfPassword').val()
+        });
+    }
+
+
+    $("#register").on("pagebeforeshow",function(){
+
+        value = localStorage.getItem('Auth');
+
+        if (value === null){
+            console.log("No users found, please register");
+            jQuery.mobile.changePage('#register', {transition: "fade"});
+        } else {
+            jQuery.mobile.changePage('#homepage', {transition: "fade"});}
+    })
+
+
+
+    function populateBooking(data) {
+        console.log("in populate data");
+        var str = "";
+        var remaining;
+
+        for (var i = 0; i < data.length; i++) {
+
+            var today = new Date();
+
+            str += "<ul data-role='listview' data-inset='true' class='card'>" +
+                "<li data-role='list-divider'>" +
+                "<h1 id='lblBooking" + data[i].Booking_No + "'>Booking : " + data[i].Booking_No + "</h1></li><li>" +
+                "<h3 id='lblBookingNo" + data[i].Booking_No + "' align='center'>" + data[i].Tour_Name + "</h3>" +
+                "<h4 id='lblTripDate" + data[i].Booking_No + "' align='center'>Departure Date : " + data[i].Departure_Date + "</h4><div>";
+            if (data[i].Deposit_Amount < data[i].Amount_Due && false) { //This validation is used only when there is a real payment system implemented
+                remaining = data[i].Amount_Due - data[i].Deposit_Amount;
+                str += "<h1 style='color: darkred;'>Payment due : " + remaining + "</h1>";
+                str += "<a data-role='button' data-theme='c' id='payFor" + data[i].Booking_No + "'>Complete" +
+                    " Payment</a>";
+            } else {
+
+                if (today <= new Date(data[i].Departure_Date) && false) { //This validation will be use if departure date has arrived, for testing purpose it will be disabled
+                    str += "<h3 style='color: green;' align='center'>Payment confirmed. Don't be late!</h3>";
+                    str += "<a class='it' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
+                        " data-theme='c'>View Itinerary</a>";
+                } else {
+                    str += "<h3 style='color:green;' align='center'>Cheers! That was fun.</h3>";
+                    str += "<a class='it' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
+                                            " data-theme='c'>View Itinerary</a>";
+                    str += "<a class='review' data-tourno='" + data[i].Tour_No + "' data-tripid='"+data[i].Trip_Id+"' data-role='button' data-theme='b'>Write a review</a>";
+                }
+
+            }
+            str += "</div></li></ul>";
+        }
+
+        $("#populateBookingData").html(str).trigger("create");
+
+        $('#populateBookingData .it').off('click').on('click', function () {
+            target = $(this).attr("data-tourno");
+            localStorage.setItem('tourno', target);
+            jQuery.mobile.changePage('#viewIt', {transition: "fade"});
+            console.log("on viewIt class listener");
+        });
+
+        $('#populateBookingData .review').off('click').on('click', function () {
+            target = $(this).attr("data-tripid");
+            localStorage.setItem('tripid', target);
+            jQuery.mobile.changePage('#newReview', {transition: "fade"});
+            console.log("on review class listener trip no : " + target);
+        });
+
+        console.log("End populate booking");
+
+    }
 
 
     //Tourlist preload functions
@@ -59,7 +213,7 @@ $(document).on("pageinit", function () {
 
         $.ajax({
             type: "GET",
-            url: rootURL + 'tour/all',
+            url: rootURL + 'tour/all/',
             dataType: "json"
         })
             .done(function (data) {
@@ -70,8 +224,8 @@ $(document).on("pageinit", function () {
                 }
             }).fail(function (data) {
             /* Execute when ajax falls over */
-            alert("Error connecting to Webservice.\nTry again");
-        });//end Ajax
+            alert("TourList exception thrown");
+        })//end Ajax
 
     });
 
@@ -135,7 +289,7 @@ $(document).on("pageinit", function () {
                 }
             }).fail(function (data) {
             /* Execute when ajax falls over */
-            alert("Error connecting to Webservice.\nTry again");
+            alert("Review exception thrown");
         });//end Ajax
 
     });
@@ -193,92 +347,11 @@ $(document).on("pageinit", function () {
     /**
      * Show every tour back when users tap the clear button
      */
-    $(document).on('click', '.ui-input-clear', function () {
+    $(".ui-input-clear").on('click', function () {
         $("ul li h1").each(function () {
             $(this).closest('.card').show();
         })
     });
-
-
-    $("#homepage").live("pagebeforeshow", function () {
-
-        var Auth = localStorage.getItem('Auth');
-        console.log("in homepage preload with user auth : " + Auth);
-
-        $.ajax({
-            type: "GET",
-            url: rootURL + 'booking/getbookingfromauth/',
-            dataType: "json"
-        }).done(function (data) {
-            if (data && data.length > 0) {
-                console.log("in populate sending ajax, some data exists");
-                populateBooking(data);
-            } else {
-                var str = "<h1>No Booking entry</h1><br/><a href='#tourList' data-role='button'" +
-                    " data-theme='b'>Book a tour now</a>";
-                $("#populateBookingData").html(str).trigger("create");
-                console.log("no data present");
-            }
-        }).fail(function (data) {
-            /* Execute when ajax falls over */
-            alert("Error connecting to Webservice.\nTry again");
-        });//end Ajax
-
-    });
-
-    function populateBooking(data) {
-        console.log("in populate data");
-        var str = "";
-        var remaining;
-
-        for (var i = 0; i < data.length; i++) {
-
-            var today = new Date();
-
-            str += "<ul data-role='listview' data-inset='true' class='card'>" +
-                "<li data-role='list-divider'>" +
-                "<h1 id='lblBooking" + data[i].Booking_No + "'>Booking : " + data[i].Booking_No + "</h1></li><li>" +
-                "<h3 id='lblBookingNo" + data[i].Booking_No + "' align='center'>" + data[i].Tour_Name + "</h3>" +
-                "<h4 id='lblTripDate" + data[i].Booking_No + "' align='center'>Departure Date : " + data[i].Departure_Date + "</h4><div>";
-            if (data[i].Deposit_Amount < data[i].Amount_Due) {
-                remaining = data[i].Amount_Due - data[i].Deposit_Amount;
-                str += "<h1 style='color: darkred;'>Payment due : " + remaining + "</h1>";
-                str += "<a data-role='button' data-theme='c' id='payFor" + data[i].Booking_No + "'>Complete" +
-                    " Payment</a>";
-            } else {
-
-                if (today <= new Date(data[i].Departure_Date)) {
-                    str += "<h3 style='color: green;' align='center'>Payment confirmed. Don't be late!</h3>";
-                    str += "<a class='it' data-tourno='" + data[i].Tour_No + "' data-role='button'" +
-                        " data-theme='c'>View Itinerary</a>";
-                } else {
-                    str += "<h3 style='color:green;' align='center'>Cheers! That was fun.</h3>";
-                    str += "<a class='review' data-tourno='" + data[i].Tour_No + "' data-tripid='"+data[i].Trip_Id+"' data-role='button' data-theme='b'>Write a review</a>";
-                }
-
-            }
-            str += "</div></li></ul>";
-        }
-
-        $("#populateBookingData").html(str).trigger("create");
-
-        $('#populateBookingData .it').off('click').on('click', function () {
-            target = $(this).attr("data-tourno");
-            localStorage.setItem('tourno', target);
-            jQuery.mobile.changePage('#viewIt', {transition: "fade"});
-            console.log("on viewIt class listener");
-        });
-
-        $('#populateBookingData .review').off('click').on('click', function () {
-            target = $(this).attr("data-tripid");
-            localStorage.setItem('tripid', target);
-            jQuery.mobile.changePage('#newReview', {transition: "fade"});
-            console.log("on review class listener trip no : " + target);
-        });
-
-        console.log("End populate booking");
-
-    }
 
     $("#viewIt").live("pagebeforeshow", function () {
         target = localStorage.getItem('tourno');
@@ -487,7 +560,6 @@ $(document).on("pageinit", function () {
         var target;
 
         for (var i = 0; i < data.length; i++) {
-
             remaining = data[i].Max_Passengers - data[i].Seats_Taken;
 
             str += "<ul data-role='listview' data-inset='true' class='card'>" +
@@ -547,8 +619,15 @@ $(document).on("pageinit", function () {
     function setStr(data) {
 
         console.log("in setStr()");
+        if(data.Seats_Taken === null)
+        {
+
+        }
         var str = "";
         var remaining = data.Max_Passengers - data.Seats_Taken;
+        console.log("max psg = " + data.Max_Passengers);
+        console.log("seats taken = " + data.Seats_Taken);
+        console.log(remaining);
         var target;
         var choose;
 
@@ -585,6 +664,7 @@ $(document).on("pageinit", function () {
 
 
     $("#btnConfirmBooking").on('click',function(){
+
         var tripid = localStorage.getItem('tripid');
         console.log(bookJSON());
 
@@ -597,9 +677,8 @@ $(document).on("pageinit", function () {
         }).done(function (data) {
             console.log("done!");
             jQuery.mobile.changePage('#homepage', {transition: "fade"});
-
         }).fail(function (data) {
-            alert("registration failed");
+            alert("Booking failed");
         });
 
         function bookJSON() {
@@ -653,36 +732,51 @@ $(document).on("pageinit", function () {
 
     $("#EbtnSubmit").on("click", function () {
 
-        console.log('Submitting edit form');
-        var Email = $("#EtxfEmail").val();
+        var validator = true;
+        var name = $("#EtxfName").val();
+        var mid = $("#EtxfMiddle").val();
 
-        $.ajax({
-            type: "POST",
-            contentType: 'application/json',
-            url: rootURL + 'customer/edit/' + Email,
-            dataType: 'JSON',
-            data: editJSON(),
-        }).done(function (data) {
-            console.log('account updated successfully');
-            console.log(editJSON().toString());
-            jQuery.mobile.changePage('#homepage', {transition: "fade"});
-        }).fail(function (data) {
-            alert("registration failed");
-        });
+        if(name === ""){
+            validator = false;
+            alert("Please input a valid name");
+            $("#EtxfName").focus();
+        }else if(mid.length >1) {
+            validator = false;
+            alert("Middle name can have only 1 characters");
+            $("#EtxfMiddle").focus();
+        }else{
 
-        function editJSON() {
-            return JSON.stringify({
-                "First_Name": $("#EtxfName").val(),
-                "Middle_Initial": $("#EtxfMiddle").val(),
-                "Last_Name": $("#EtxfLast").val(),
-                "Street_No": $("#EtxfStreetNo").val(),
-                "Street_Name": $("#EtxfStreetName").val(),
-                "Suburb": $("#EtxfSuburb").val(),
-                "Postcode": $("#EtxfPost").val(),
-                "Phone": $("#EtxfPhone").val()
+            console.log('Submitting edit form');
+            var Email = $("#EtxfEmail").val();
+
+            $.ajax({
+                type: "POST",
+                contentType: 'application/json',
+                url: rootURL + 'customer/edit/' + Email,
+                dataType: 'JSON',
+                data: editJSON(),
+            }).done(function (data) {
+                console.log('account updated successfully');
+                console.log(editJSON().toString());
+                jQuery.mobile.changePage('#homepage', {transition: "fade"});
+            }).fail(function (data) {
+                alert("registration failed");
             });
 
-        }
+            function editJSON() {
+                return JSON.stringify({
+                    "First_Name": $("#EtxfName").val(),
+                    "Middle_Initial": $("#EtxfMiddle").val(),
+                    "Last_Name": $("#EtxfLast").val(),
+                    "Street_No": $("#EtxfStreetNo").val(),
+                    "Street_Name": $("#EtxfStreetName").val(),
+                    "Suburb": $("#EtxfSuburb").val(),
+                    "Postcode": $("#EtxfPost").val(),
+                    "Phone": $("#EtxfPhone").val()
+                });
+
+            }
+        }//end else
 
 
     });
@@ -724,51 +818,6 @@ $(document).on("pageinit", function () {
             alert("Confirm password field does not match the new password");
         }
 
-
-    });
-
-
-    $("#btnRegister").on("click", function () {
-
-        console.log('submit clicked');
-
-        if ($("#txfPassword").val() == $("#txfConfirmPassword").val()) {
-            $.ajax({
-                type: "POST",
-                contentType: 'application/json',
-                url: rootURL + 'customer/add',
-                dataType: 'JSON',
-                data: registerJSON()
-            }).done(function (data) {
-
-                localStorage.setItem('Auth', data.Auth);
-
-                console.log("Auth generated! : " + localStorage.getItem('Auth'));
-
-                jQuery.mobile.changePage('#homepage', {transition: "fade"});
-
-            }).fail(function (data) {
-                alert("registration failed");
-            });
-
-            function registerJSON() {
-                return JSON.stringify({
-                    "First_Name": $('#txfName').val(),
-                    "Middle_Initial": $('#txfMiddle').val(),
-                    "Last_Name": $('#txfLast').val(),
-                    "Street_No": $('#txfStreetNo').val(),
-                    "Street_Name": $('#txfStreetName').val(),
-                    "Suburb": $('#txfSuburb').val(),
-                    "Postcode": $('#txfPost').val(),
-                    "Email": $('#txfEmail').val(),
-                    "Phone": $('#txfPhone').val(),
-                    "Password": $('#txfPassword').val()
-                });
-            }
-        } else {
-            alert("Password not match");
-            $("#txfPassword").focus();
-        }
 
     });
 
