@@ -1,10 +1,8 @@
 /*
- Creator:Bill Kascamanidis
- Creation Date: 17/12/2016
- Current Version: 10
+ Creator:Panjapol Chiemsombat
+ Current Version: 14
  Current Revision: 2
- Last Modified: 04/2/2017 22:00
- Last Modified by: Bill Kascamanidis
+ Last Modified: 09/6/2017 02:25
  */
 
 /////////////////////////////////////////Variable Declaration
@@ -14,7 +12,8 @@ var pageinited = false;
 /////////////////////////////////////////jquery On Document Ready
 $(document).one("pageinit", function () {
 
-    var rootURL = "http://10.0.2.2/sites/PhoenixSlim/";
+//    var rootURL = "http://10.0.2.2/sites/PhoenixSlim/";
+    var rootURL = "https://phoenix-travel-slim-heroku.herokuapp.com/";
 
     console.log("jQuery working");
 
@@ -64,7 +63,7 @@ $(document).one("pageinit", function () {
         }
 
 
-
+''
 
     }); // end homepage live beforepageshow
 
@@ -440,8 +439,6 @@ $(document).one("pageinit", function () {
             addReviewStr();
         })//end Ajax
 
-
-
     }
 
     function editReviewStr(data){
@@ -451,6 +448,7 @@ $(document).one("pageinit", function () {
         $("#txaGeneral").val(data.General_Feedback);
         $("#txaLikes").val(data.Likes);
         $("#txaDislikes").val(data.Dislikes);
+        console.log(data.General_Feedback+data.Likes+data.Dislikes);
 
         $("#btnSubmitReview").off('click').on('click',function(){
             $.ajax({
@@ -460,9 +458,9 @@ $(document).one("pageinit", function () {
                 dataType: 'json',
                 data: editReviewJSON(),
             }).done(function (data) {
-                console.log('account updated successfully');
+                console.log('review edited successfully');
                 console.log(data);
-                jQuery.mobile.changePage('#homepage', {transition: "fade"});
+                jQuery.mobile.changePage('#review', {transition: "fade"});
             }).fail(function (data) {
                 alert("Edit failed");
             });
@@ -482,7 +480,7 @@ $(document).one("pageinit", function () {
                 });
 
             }
-        })
+        });
 
     }
 
